@@ -1,6 +1,7 @@
 <script>
 
 function myFunction(page, event, letter) {
+	updateActiveNavItem(page);
     event.preventDefault(); // Impedisce al link di eseguire l'azione predefinita
     var urlParams = new URLSearchParams(window.location.search);
     urlParams.set('page', page); // Imposta il parametro di query della pagina
@@ -43,12 +44,12 @@ var btns = header.getElementsByClassName("page-item");
 			class="navbar-nav mr-auto w-100 pagination justify-content-center nav nav-pills nav-fill gap-2 p-1 small"
 			id="navList">
 			<li class="page-item"><a class="page-link navFont"
-				onclick="myFunction('primipassi', event)" href="?page=primipassi">PRIMI
+				onclick="myFunction('primipassi', event, null)" href="?page=primipassi">PRIMI
 					PASSI</a></li>
 			<li class="page-item"><a class="page-link navFont"
-				onclick="myFunction('glossario', event)" href="?page=glossario">GLOSSARIO</a></li>
+				onclick="myFunction('glossario', event, null)" href="?page=glossario">GLOSSARIO</a></li>
 			<li class="page-item"><a class="page-link navFont"
-				onclick="myFunction('domande', event)" href="?page=domande">DOMANDE
+				onclick="myFunction('domande', event, null)" href="?page=domande">DOMANDE
 					FREQUENTI</a></li>
 			<li class="page-item disabled"><a class="page-link navFont"
 				href="?page=falsimiti">FALSI MITI</a></li>

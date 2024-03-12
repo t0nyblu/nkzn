@@ -17,6 +17,17 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
 
+function updateActiveNavItem(page) {
+    var navItems = document.querySelectorAll("#navList .page-item");
+    for (var i = 0; i < navItems.length; i++) {
+        navItems[i].classList.remove('active');
+        var href = navItems[i].querySelector('a').getAttribute('href');
+        if (href.includes('?page=' + page)) {
+            navItems[i].classList.add('active');
+        }
+    }
+}
+
 function initFunc() {
     var urlParams = new URLSearchParams(window.location.search);
     var page = urlParams.get('page');
