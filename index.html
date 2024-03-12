@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+
+<style>
+    /* Animazione per aumentare la larghezza dell'input quando attivo */
+    input[type="text"] {
+        transition: width 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+        width: 200px; /* Larghezza desiderata quando attivo */
+    }
+</style>
+
+<style>
+    /* Rimuove il bordo e lo sfondo dei link */
+    .classeTras .page-item a.page-link {
+        border: none;
+        background-color: transparent;
+    }
+
+    /* Cambia il colore del testo quando si passa con il mouse sopra i link */
+    .classeTras .page-item a.page-link:hover {
+        color: darkgrey; /* Cambia il colore del testo quando si passa con il mouse sopra */
+        
+    }
+</style>
+
+
+   <link rel="stylesheet" href="stili.css">
+
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+
+function initFunc() {
+	$("#PAGINADAVISUALIZZARE").load("primipassi.html");
+	$("#FOOTER").load("footer.html");
+	console.log("Entro");
+}
+
+	$(function() {
+		$("#contenuto").load("contenuto.html");
+		$("#header").load("header.html");
+		$("#navbar").load("navbar.html");
+	});
+</script>
+
+
+<body onLoad="initFunc();" class="bg-light">
+<div class=" bg-light text-dark"> <!-- p-3 mb-2 -->
+	<div style="margin-top: 50px;" id="header"></div>
+	<div id="navbar"></div>
+	<br><!-- ELIMINA -->
+	<div  id="PAGINADAVISUALIZZARE"></div> <!-- class="px-3 py-4 my-2" -->
+	
+	
+	
+		<br></br><br></br><br></br><!-- ELIMINA -->
+	
+
+		<div  id=FOOTER></div> 
+	
+	</div>
+	
+
+	
+	
+	
+</body>
+</html>

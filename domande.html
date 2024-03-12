@@ -1,0 +1,142 @@
+<div class="container">
+	<nav aria-label="Page navigation example">
+		<ul class="pagination justify-content-center" id="navList2">
+			<li style="width:100%; height:100%;"><input style="width:100%; height:100%;" type="text" id="searchInput" class="rounded page-link"
+				onkeyup="search()" placeholder="Cerca domanda..."></li>
+		</ul>
+	</nav>
+	<!-- Glossario -->
+	<ul id="glossaryList" class="list-group">
+		<!-- Il glossario verrà popolato qui -->
+	</ul>
+</div>
+
+
+
+
+<script>
+    // Funzione per leggere e popolare il glossario dal file XML
+    function populateGlossaryFromXML(xmlFile) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                parseXML(this);
+            }
+        };
+        xhttp.open("GET", xmlFile, true);
+        xhttp.send();
+    }
+
+ // Funzione per analizzare il file XML e popolare il glossario
+    function parseXML(xml) {
+        var xmlDoc = xml.responseXML;
+        var glossaryList = document.getElementById("glossaryList");
+
+        var entries = xmlDoc.getElementsByTagName("entry");
+        for (var i = 0; i < entries.length; i++) {
+            var word = entries[i].getElementsByTagName("word")[0].childNodes[0].nodeValue;
+            var definition = entries[i].getElementsByTagName("definition")[0].childNodes[0].nodeValue;
+            var listItem = document.createElement("li");
+            listItem.className = "list-group-item";
+            var strongElement = document.createElement("strong");
+            strongElement.appendChild(document.createTextNode(word + ": "));
+            listItem.appendChild(strongElement);
+            listItem.appendChild(document.createTextNode(definition));
+
+            // Aggiungi evento mouseover per evidenziare l'elemento
+            listItem.addEventListener('mouseover', function () {
+                this.style.backgroundColor = "#f0f0f0"; // Cambia il colore di sfondo quando il mouse passa sopra
+            });
+
+            // Aggiungi evento mouseout per ripristinare il colore originale
+            listItem.addEventListener('mouseout', function () {
+                this.style.backgroundColor = ""; // Ripristina il colore originale quando il mouse esce dall'elemento
+            });
+
+            // Aggiungi evento click per mostrare solo l'elemento cliccato
+            listItem.addEventListener('click', function () {
+                var ul = document.getElementById("glossaryList");
+                var li = ul.getElementsByTagName('li');
+
+                for (var j = 0; j < li.length; j++) {
+                    if (li[j] !== this) {
+                        li[j].style.display = "none"; // Nascondi gli altri elementi
+                    } else {
+                        li[j].style.display = ""; // Mostra solo l'elemento cliccato
+                    }
+                }
+            });
+
+            glossaryList.appendChild(listItem);
+        }
+    }
+
+
+
+
+    // Funzione per filtrare il glossario in base alla ricerca
+    function search() {
+        var header2 = document.getElementById("navList2");
+        var activeElement = header2.querySelector(".page-item.active");
+
+        if (activeElement) {
+            activeElement.classList.remove("active");
+        }
+
+        var input, filter, ul, li, strong, i, txtValue;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("glossaryList");
+        li = ul.getElementsByTagName('li');
+
+        for (i = 0; i < li.length; i++) {
+            strong = li[i].getElementsByTagName('strong')[0];
+            txtValue = strong.textContent || strong.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+
+    // Funzione per filtrare il glossario in base alla lettera dell'alfabeto
+    function filterByLetter(letter) {
+        var ul, li, strong, i, txtValue;
+        ul = document.getElementById("glossaryList");
+        li = ul.getElementsByTagName('li');
+
+        for (i = 0; i < li.length; i++) {
+            strong = li[i].getElementsByTagName('strong')[0];
+            txtValue = strong.textContent || strong.innerText;
+            if (txtValue.charAt(0).toUpperCase() === letter) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+
+    // Chiamata alla funzione per popolare il glossario da un file XML
+    populateGlossaryFromXML("questions.xml");
+
+    // Aggiungi la classe "active" al pulsante corrente (evidenzialo)
+    var header2 = document.getElementById("navList2");
+    var btns2 = header2.getElementsByClassName("page-item");
+    for (var i = 0; i < btns2.length; i++) {
+        btns2[i].addEventListener("click", function () {
+            var current2 = header2.getElementsByClassName("active");
+            if (current2.length > 0) {
+                current2[0].classList.remove("active");
+            }
+            this.classList.add("active");
+        });
+    }
+</script>
+
+
+
+
+
+
+

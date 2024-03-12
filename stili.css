@@ -1,0 +1,40 @@
+ 
+@font-face {
+   font-family: myFont;
+   src: url(zetafont.ttf);
+}
+  
+   
+@font-face {
+   font-family: myFont2;
+   src: url(tuttofont.ttf);
+}
+
+@font-face {
+   font-family: fontPerNav;
+   src: url(navfont.ttf);
+}
+  
+  .navFont{
+     font-family: fontPerNav;
+  }
+  
+.logoX {
+   font-family: myFont;
+   color: #400040;
+}
+
+  
+.tutto {
+   font-family: myFont2;
+   color: #400040;
+}
+
+#navList2 a:focus {
+    outline: none;
+}
+
+
+*:focus {
+    outline: none;
+}
