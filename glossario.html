@@ -1,67 +1,69 @@
 <div class="container">
 
 
-	<nav aria-label="Page navigation example"> <!-- class="classeTras"-->
+	<nav aria-label="Page navigation example">
+		<!-- class="classeTras"-->
+
+		<ul class="overflow-auto pagination d-flex flex-nowrap" id="navList2">
+			<li><input style="width: 180px;" type="text" id="searchInput"
+				class="rounded-left form-control" onkeyup="search()"
+				placeholder="Cerca..."></li>
+			<li style="margin-left: 20px;"></li>
+			<li class="page-item flex-grow-1"><a style="border-top-left-radius: 3px; border-bottom-left-radius: 3px" class="page-link"
+				onclick="myFunction('glossario', event, 'A')" href="#">A</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'B')" href="#">B</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'C')" href="#">C</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'D')" href="#">D</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'E')" href="#">E</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'F')" href="#">F</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'G')" href="#">G</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'H')" href="#">H</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'I')" href="#">I</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'J')" href="#">J</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'K')" href="#">K</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'L')" href="#">L</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'M')" href="#">M</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'N')" href="#">N</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'O')" href="#">O</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'P')" href="#">P</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'Q')" href="#">Q</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'R')" href="#">R</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'S')" href="#">S</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'T')" href="#">T</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'U')" href="#">U</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'V')" href="#">V</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'W')" href="#">W</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'X')" href="#">X</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'Y')" href="#">Y</a></li>
+			<li class="page-item flex-grow-1"><a class="page-link"
+				onclick="myFunction('glossario', event, 'Z')" href="#">Z</a></li>
 
 
 
-<ul class="overflow-auto pagination d-flex flex-nowrap" id="navList2">
-    <li><input style="width: 180px;" type="text" id="searchInput"
-            class="rounded-left form-control" onkeyup="search()"
-            placeholder="Cerca..."></li>
-            <li style="margin-left: 20px;"></li>
-			<li  class="page-item flex-grow-1"><a style="border-top-left-radius: 3px; border-bottom-left-radius: 3px"class="page-link"
-				onclick="filterByLetter('A')" href="#A">A</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('B')" href="#B">B</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('C')" href="#C">C</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('D')" href="#D">D</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('E')" href="#E">E</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('F')" href="#F">F</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('G')" href="#G">G</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('H')" href="#H">H</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('I')" href="#I">I</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('J')" href="#J">J</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('K')" href="#K">K</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('L')" href="#L">L</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('M')" href="#M">M</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('N')" href="#N">N</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('O')" href="#O">O</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('P')" href="#P">P</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('Q')" href="#Q">Q</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('R')" href="#R">R</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('S')" href="#S">S</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('T')" href="#T">T</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('U')" href="#U">U</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('V')" href="#V">V</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('W')" href="#W">W</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('X')" href="#X">X</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('Y')" href="#Y">Y</a></li>
-			<li class="page-item flex-grow-1"><a class="page-link"
-				onclick="filterByLetter('Z')" href="#Z">Z</a></li>
 		</ul>
 
 
@@ -91,55 +93,45 @@
 		xhttp.send();
 	}
 
-	// Funzione per analizzare il file XML e popolare il glossario
 	function parseXML(xml) {
-		var xmlDoc = xml.responseXML;
-		var glossaryList = document.getElementById("glossaryList");
+	    var xmlDoc = xml.responseXML;
+	    var glossaryList = document.getElementById("glossaryList");
 
-		var entries = xmlDoc.getElementsByTagName("entry");
-		for (var i = 0; i < entries.length; i++) {
-			var word = entries[i].getElementsByTagName("word")[0].childNodes[0].nodeValue;
-			var definition = entries[i].getElementsByTagName("definition")[0].childNodes[0].nodeValue;
-			var listItem = document.createElement("li");
-			listItem.className = "list-group-item";
-			var strongElement = document.createElement("strong");
-			strongElement.appendChild(document.createTextNode(word + ": "));
-			listItem.appendChild(strongElement);
-			listItem.appendChild(document.createTextNode(definition));
+	    var entries = xmlDoc.getElementsByTagName("entry");
+	    for (var i = 0; i < entries.length; i++) {
+	        var word = entries[i].getElementsByTagName("word")[0].childNodes[0].nodeValue;
+	        var definition = entries[i].getElementsByTagName("definition")[0].childNodes[0].nodeValue;
+	        var firstLetter = word.charAt(0).toUpperCase();
 
-			// Aggiungi evento mouseover per evidenziare l'elemento
-			listItem.addEventListener('mouseover', function() {
-				this.style.backgroundColor = "#f0f0f0"; // Cambia il colore di sfondo quando il mouse passa sopra
-			});
+	        var listItem = document.createElement("li");
+	        listItem.className = "list-group-item start-with-" + firstLetter; // Aggiungi classe per la lettera iniziale
 
-			// Aggiungi evento mouseout per ripristinare il colore originale
-			listItem.addEventListener('mouseout', function() {
-				this.style.backgroundColor = ""; // Ripristina il colore originale quando il mouse esce dall'elemento
-			});
+	        var strongElement = document.createElement("strong");
+	        strongElement.appendChild(document.createTextNode(word + ": "));
+	        listItem.appendChild(strongElement);
+	        listItem.appendChild(document.createTextNode(definition));
 
-			// Aggiungi evento click per mostrare solo l'elemento cliccato
-			listItem.addEventListener('click', function() {
-				
-	
-	                var ul = document.getElementById("glossaryList");
-	                var li = ul.getElementsByTagName('li');
+	        // Aggiungi evento mouseover per evidenziare l'elemento
+	        listItem.addEventListener('mouseover', function() {
+	            this.style.backgroundColor = "#f0f0f0"; // Cambia il colore di sfondo quando il mouse passa sopra
+	        });
 
-	                for (var j = 0; j < li.length; j++) {
-	                    if (li[j] !== this) {
-	                        li[j].style.display = "none"; // Nascondi gli altri elementi
-	                    } else {
-	                        li[j].style.display = ""; // Mostra solo l'elemento cliccato
-	                    }
-	                }
-	        
-	            
-				//APRI PAGINA CONTENUTO
-				//myFunction('contenuto');
-			});
+	        // Aggiungi evento mouseout per ripristinare il colore originale
+	        listItem.addEventListener('mouseout', function() {
+	            this.style.backgroundColor = ""; // Ripristina il colore originale quando il mouse esce dall'elemento
+	        });
 
-			glossaryList.appendChild(listItem);
-		}
+	        glossaryList.appendChild(listItem);
+	    }
+
+	    // Controlla se ci sono parametri di query per filtrare il glossario
+	    var urlParams = new URLSearchParams(window.location.search);
+	    var letter = urlParams.get('letter');
+	    if (letter) {
+	        filterByLetter(letter);
+	    }
 	}
+
 
 	// Funzione per filtrare il glossario in base alla ricerca
 	function search() {
@@ -167,22 +159,46 @@
 		}
 	}
 
-	// Funzione per filtrare il glossario in base alla lettera dell'alfabeto
-	function filterByLetter(letter) {
-		var ul, li, strong, i, txtValue;
-		ul = document.getElementById("glossaryList");
-		li = ul.getElementsByTagName('li');
+	function filterByLetterOLD(letter) {
+		var urlParams = new URLSearchParams(window.location.search);
+		var currentPage = urlParams.get('page'); // Otteniamo il valore del parametro di query della pagina attuale
+		var requestedLetter = urlParams.get('letter');
 
-		for (i = 0; i < li.length; i++) {
-			strong = li[i].getElementsByTagName('strong')[0];
-			txtValue = strong.textContent || strong.innerText;
-			if (txtValue.charAt(0).toUpperCase() === letter) {
-				li[i].style.display = "";
-			} else {
-				li[i].style.display = "none";
+		if (requestedLetter === letter) {
+			var ul, li, strong, i, txtValue;
+			ul = document.getElementById("glossaryList");
+			li = ul.getElementsByTagName('li');
+
+			for (i = 0; i < li.length; i++) {
+				strong = li[i].getElementsByTagName('strong')[0];
+				txtValue = strong.textContent || strong.innerText;
+				if (txtValue.charAt(0).toUpperCase() === letter) {
+					li[i].style.display = "";
+				} else {
+					li[i].style.display = "none";
+				}
 			}
+		} else {
+			// Aggiungi il parametro letter all'URL esistente
+			urlParams.set('letter', letter);
+			var newUrl = window.location.pathname + '?' + urlParams.toString();
+			window.location.href = newUrl;
 		}
 	}
+	
+	function filterByLetter(letter) {
+	    var ul = document.getElementById("glossaryList");
+	    var li = ul.getElementsByTagName('li');
+
+	    for (var i = 0; i < li.length; i++) {
+	        if (li[i].classList.contains('start-with-' + letter)) {
+	            li[i].style.display = "";
+	        } else {
+	            li[i].style.display = "none";
+	        }
+	    }
+	}
+
 
 	// Chiamata alla funzione per popolare il glossario da un file XML
 	populateGlossaryFromXML("glossary.xml");

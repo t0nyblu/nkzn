@@ -45,9 +45,18 @@
 <script>
 
 function initFunc() {
-	$("#PAGINADAVISUALIZZARE").load("primipassi.html");
-	$("#FOOTER").load("footer.html");
-	console.log("Entro");
+    var urlParams = new URLSearchParams(window.location.search);
+    var page = urlParams.get('page');
+    if (page) {
+        $("#PAGINADAVISUALIZZARE").load(page + ".html");
+        updateActiveNavItem(page);
+    } else {
+        $("#PAGINADAVISUALIZZARE").load("primipassi.html"); // Carica una pagina predefinita se il parametro 'page' non è presente nell'URL
+        updateActiveNavItem("primipassi"); // Imposta il primo elemento della barra di navigazione come attivo
+    }
+
+    $("#FOOTER").load("footer.html");
+    console.log("Entro");
 }
 
 	$(function() {
