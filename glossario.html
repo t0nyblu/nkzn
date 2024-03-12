@@ -9,8 +9,10 @@
 				class="rounded-left form-control" onkeyup="search()"
 				placeholder="Cerca..."></li>
 			<li style="margin-left: 20px;"></li>
-			<li class="page-item flex-grow-1"><a style="border-top-left-radius: 3px; border-bottom-left-radius: 3px" class="page-link"
-				onclick="myFunction('glossario', event, 'A')" href="#">A</a></li>
+			<li class="page-item flex-grow-1"><a
+				style="border-top-left-radius: 3px; border-bottom-left-radius: 3px"
+				class="page-link" onclick="myFunction('glossario', event, 'A')"
+				href="#">A</a></li>
 			<li class="page-item flex-grow-1"><a class="page-link"
 				onclick="myFunction('glossario', event, 'B')" href="#">B</a></li>
 			<li class="page-item flex-grow-1"><a class="page-link"
@@ -61,24 +63,15 @@
 				onclick="myFunction('glossario', event, 'Y')" href="#">Y</a></li>
 			<li class="page-item flex-grow-1"><a class="page-link"
 				onclick="myFunction('glossario', event, 'Z')" href="#">Z</a></li>
-
-
-
 		</ul>
 
-
-
 	</nav>
-
 
 	<!-- Glossario -->
 	<ul id="glossaryList" class="list-group">
 		<!-- Il glossario verrà popolato qui -->
 	</ul>
 </div>
-
-
-
 
 <script>
 	// Funzione per leggere e popolare il glossario dal file XML
@@ -94,70 +87,77 @@
 	}
 
 	function parseXML(xml) {
-	    var xmlDoc = xml.responseXML;
-	    var glossaryList = document.getElementById("glossaryList");
+		var xmlDoc = xml.responseXML;
+		var glossaryList = document.getElementById("glossaryList");
 
-	    var entries = xmlDoc.getElementsByTagName("entry");
-	    for (var i = 0; i < entries.length; i++) {
-	        var word = entries[i].getElementsByTagName("word")[0].childNodes[0].nodeValue;
-	        var definition = entries[i].getElementsByTagName("definition")[0].childNodes[0].nodeValue;
-	        var firstLetter = word.charAt(0).toUpperCase();
+		var entries = xmlDoc.getElementsByTagName("entry");
+		for (var i = 0; i < entries.length; i++) {
+			var word = entries[i].getElementsByTagName("word")[0].childNodes[0].nodeValue;
+			var definition = entries[i].getElementsByTagName("definition")[0].childNodes[0].nodeValue;
+			var firstLetter = word.charAt(0).toUpperCase();
 
-	        var listItem = document.createElement("li");
-	        listItem.className = "list-group-item start-with-" + firstLetter; // Aggiungi classe per la lettera iniziale
+			var listItem = document.createElement("li");
+			listItem.className = "list-group-item start-with-" + firstLetter; // Aggiungi classe per la lettera iniziale
 
-	        var strongElement = document.createElement("strong");
-	        strongElement.appendChild(document.createTextNode(word + ": "));
-	        listItem.appendChild(strongElement);
-	        listItem.appendChild(document.createTextNode(definition));
+			var strongElement = document.createElement("strong");
+			strongElement.appendChild(document.createTextNode(word + ": "));
+			listItem.appendChild(strongElement);
+			listItem.appendChild(document.createTextNode(definition));
 
-	        // Aggiungi evento mouseover per evidenziare l'elemento
-	        listItem.addEventListener('mouseover', function() {
-	            this.style.backgroundColor = "#f0f0f0"; // Cambia il colore di sfondo quando il mouse passa sopra
-	        });
+			// Aggiungi evento mouseover per evidenziare l'elemento
+			listItem.addEventListener('mouseover', function() {
+				this.style.backgroundColor = "#f0f0f0"; // Cambia il colore di sfondo quando il mouse passa sopra
+			});
 
-	        // Aggiungi evento mouseout per ripristinare il colore originale
-	        listItem.addEventListener('mouseout', function() {
-	            this.style.backgroundColor = ""; // Ripristina il colore originale quando il mouse esce dall'elemento
-	        });
+			// Aggiungi evento mouseout per ripristinare il colore originale
+			listItem.addEventListener('mouseout', function() {
+				this.style.backgroundColor = ""; // Ripristina il colore originale quando il mouse esce dall'elemento
+			});
 
-	        glossaryList.appendChild(listItem);
-	    }
+			glossaryList.appendChild(listItem);
+		}
 
-	    // Controlla se ci sono parametri di query per filtrare il glossario
-	    var urlParams = new URLSearchParams(window.location.search);
-	    var letter = urlParams.get('letter');
-	    if (letter) {
-	        filterByLetter(letter);
-	    }
+		// Controlla se ci sono parametri di query per filtrare il glossario
+		var urlParams = new URLSearchParams(window.location.search);
+		var letter = urlParams.get('letter');
+		if (letter) {
+			filterByLetter(letter);
+		}
 	}
-
 
 	// Funzione per filtrare il glossario in base alla ricerca
-	function search() {
-		var header2 = document.getElementById("navList2");
-		var activeElement = header2.querySelector(".page-item.active");
+function search() {
+    var header2 = document.getElementById("navList2");
+    var activeElement = header2.querySelector(".page-item.active");
 
-		if (activeElement) {
-			activeElement.classList.remove("active");
-		}
+    if (activeElement) {
+        activeElement.classList.remove("active");
+    }
 
-		var input, filter, ul, li, strong, i, txtValue;
-		input = document.getElementById('searchInput');
-		filter = input.value.toUpperCase();
-		ul = document.getElementById("glossaryList");
-		li = ul.getElementsByTagName('li');
+    var input, filter, ul, li, strong, i, txtValue;
+    input = document.getElementById('searchInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("glossaryList");
+    li = ul.getElementsByTagName('li');
 
-		for (i = 0; i < li.length; i++) {
-			strong = li[i].getElementsByTagName('strong')[0];
-			txtValue = strong.textContent || strong.innerText;
-			if (txtValue.toUpperCase().indexOf(filter) > -1) {
-				li[i].style.display = "";
-			} else {
-				li[i].style.display = "none";
-			}
-		}
-	}
+    for (i = 0; i < li.length; i++) {
+        strong = li[i].getElementsByTagName('strong')[0];
+        txtValue = strong.textContent || strong.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+
+    // Rimuovi il parametro 'letter' dall'URL
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('letter')) {
+        urlParams.delete('letter');
+        var newUrl = window.location.pathname + '?' + urlParams.toString();
+        window.history.replaceState(null, null, newUrl);
+    }
+}
 
 	function filterByLetterOLD(letter) {
 		var urlParams = new URLSearchParams(window.location.search);
@@ -185,41 +185,20 @@
 			window.location.href = newUrl;
 		}
 	}
-	
+
 	function filterByLetter(letter) {
-	    var ul = document.getElementById("glossaryList");
-	    var li = ul.getElementsByTagName('li');
+		var ul = document.getElementById("glossaryList");
+		var li = ul.getElementsByTagName('li');
 
-	    for (var i = 0; i < li.length; i++) {
-	        if (li[i].classList.contains('start-with-' + letter)) {
-	            li[i].style.display = "";
-	        } else {
-	            li[i].style.display = "none";
-	        }
-	    }
+		for (var i = 0; i < li.length; i++) {
+			if (li[i].classList.contains('start-with-' + letter)) {
+				li[i].style.display = "";
+			} else {
+				li[i].style.display = "none";
+			}
+		}
 	}
-
 
 	// Chiamata alla funzione per popolare il glossario da un file XML
 	populateGlossaryFromXML("glossary.xml");
-
-	// Aggiungi la classe "active" al pulsante corrente (evidenzialo)
-	var header2 = document.getElementById("navList2");
-	var btns2 = header2.getElementsByClassName("page-item");
-	for (var i = 0; i < btns2.length; i++) {
-		btns2[i].addEventListener("click", function() {
-			var current2 = header2.getElementsByClassName("active");
-			if (current2.length > 0) {
-				current2[0].classList.remove("active");
-			}
-			this.classList.add("active");
-		});
-	}
 </script>
-
-
-
-
-
-
-

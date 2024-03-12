@@ -15,22 +15,6 @@ function myFunction(page, event, letter) {
     var queryString = urlParams.toString();
     $("#PAGINADAVISUALIZZARE").load(page + ".html");
     history.pushState(null, null, '?' + queryString);
-    updateActiveNavItem(page);
-}
-
-function updateActiveNavItem(page) {
-    var urlParams = new URLSearchParams(window.location.search);
-    var navItems = document.getElementsByClassName("page-item");
-    for (var i = 0; i < navItems.length; i++) {
-        var href = navItems[i].querySelector('a').getAttribute('href');
-        var newHref = href.split('?')[0] + '?page=' + page; // Costruisci il nuovo URL con il parametro di query della pagina
-        navItems[i].querySelector('a').setAttribute('href', newHref); // Aggiorna l'attributo href
-        if (navItems[i].querySelector('a').getAttribute('href') === '?' + urlParams.toString()) {
-            navItems[i].classList.add('active');
-        } else {
-            navItems[i].classList.remove('active');
-        }
-    }
 }
 
 //Listener per gestire i cambiamenti dell'URL
@@ -52,32 +36,25 @@ var header = document.getElementById("navList");
 var btns = header.getElementsByClassName("page-item");
 </script>
 
-
-
 <div class="container">
-    <nav class="navbar navbar-expand-md" aria-label="Page navigation example">
-        <ul class="navbar-nav mr-auto w-100 pagination justify-content-center nav nav-pills nav-fill gap-2 p-1 small" id="navList">
-<li class="page-item active"><a class="page-link navFont" onclick="myFunction('primipassi', event)" href="?page=primipassi">PRIMI PASSI</a></li>
-<li class="page-item" aria-current="page"><a class="page-link navFont" onclick="myFunction('glossario', event)" href="?page=glossario">GLOSSARIO</a></li>
-<li class="page-item" aria-current="page"><a class="page-link navFont" onclick="myFunction('domande', event)" href="?page=domandefrequenti">DOMANDE FREQUENTI</a></li>
-<li class="page-item disabled"><a class="page-link navFont" href="?page=falsimiti">FALSI MITI</a></li>
-<li class="page-item disabled"><a class="page-link navFont" href="?page=guide">GUIDE</a></li>
+	<nav class="navbar navbar-expand-md"
+		aria-label="Page navigation example">
+		<ul
+			class="navbar-nav mr-auto w-100 pagination justify-content-center nav nav-pills nav-fill gap-2 p-1 small"
+			id="navList">
+			<li class="page-item"><a class="page-link navFont"
+				onclick="myFunction('primipassi', event)" href="?page=primipassi">PRIMI
+					PASSI</a></li>
+			<li class="page-item"><a class="page-link navFont"
+				onclick="myFunction('glossario', event)" href="?page=glossario">GLOSSARIO</a></li>
+			<li class="page-item"><a class="page-link navFont"
+				onclick="myFunction('domande', event)" href="?page=domande">DOMANDE
+					FREQUENTI</a></li>
+			<li class="page-item disabled"><a class="page-link navFont"
+				href="?page=falsimiti">FALSI MITI</a></li>
+			<li class="page-item disabled"><a class="page-link navFont"
+				href="?page=guide">GUIDE</a></li>
 
-        </ul>
-    </nav>
+		</ul>
+	</nav>
 </div>
-
-<script>
-//Add active class to the current button (highlight it)
-var header = document.getElementById("navList");
-var btns = header.getElementsByClassName("page-item");
-for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function() {
-        var current = header.getElementsByClassName("active");
-        if (current.length > 0) {
-            current[0].classList.remove("active");
-        }
-        this.classList.add("active");
-    });
-}
-</script>
