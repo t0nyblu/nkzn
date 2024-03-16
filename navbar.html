@@ -1,6 +1,7 @@
 <script>
 
 function myFunction(page, event, letter) {
+	   
 	updateActiveNavItem(page);
     event.preventDefault(); // Impedisce al link di eseguire l'azione predefinita
     var urlParams = new URLSearchParams(window.location.search);
@@ -12,11 +13,14 @@ function myFunction(page, event, letter) {
     } else {
         urlParams.delete('letter'); // Rimuovi il parametro letter se la pagina non è il glossario
     }
-
+    urlParams.delete('word');
     var queryString = urlParams.toString();
     $("#PAGINADAVISUALIZZARE").load(page + ".html");
     history.pushState(null, null, '?' + queryString);
+    
+    
 }
+
 
 //Listener per gestire i cambiamenti dell'URL
 window.onpopstate = function(event) {

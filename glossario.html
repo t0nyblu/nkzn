@@ -93,6 +93,12 @@
 		var entries = xmlDoc.getElementsByTagName("entry");
 		for (var i = 0; i < entries.length; i++) {
 			var word = entries[i].getElementsByTagName("word")[0].childNodes[0].nodeValue;
+			
+			console.log("la parola e'");
+			console.log(word);
+			
+			
+			
 			var definition = entries[i].getElementsByTagName("definition")[0].childNodes[0].nodeValue;
 			var firstLetter = word.charAt(0).toUpperCase();
 
@@ -104,6 +110,22 @@
 			listItem.appendChild(strongElement);
 			listItem.appendChild(document.createTextNode(definition));
 
+			
+			listItem.addEventListener('click', function () {
+			    var word = this.querySelector('strong').textContent.split(':')[0].trim();
+			    var urlParams = new URLSearchParams(window.location.search);
+			    var page = urlParams.get('page');
+			    console.log("La parola cliccata è " + word);
+
+			    $("#PAGINADAVISUALIZZARE").load("voce.html"); // Carica una pagina predefinita se il parametro 'page' non è presente nell'URL
+			    updateActiveNavItem(page);
+
+			    var currentURL = window.location.href;
+			    var separator = currentURL.indexOf('?') !== -1 ? '&' : '?';
+			    var newURL = currentURL + separator + 'word=' + encodeURIComponent(word);
+			    window.history.pushState({ path: newURL }, '', newURL);
+			});
+						
 			// Aggiungi evento mouseover per evidenziare l'elemento
 			listItem.addEventListener('mouseover', function() {
 				this.style.backgroundColor = "#f0f0f0"; // Cambia il colore di sfondo quando il mouse passa sopra

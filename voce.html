@@ -1,0 +1,120 @@
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <button type="button" onclick="goToPreviousWord()" class="btn btn-light">Parola precedente</button>
+            <button type="button" onclick="indietro()" class="btn btn-light">Torna al glossario</button>
+        <button type="button" onclick="goToNextWord()" class="btn btn-light">Parola successiva</button>
+    </div>
+    <div id="glossaryEntry" class="card">
+        <div class="card-body">
+            <!-- Contenuto del glossario verrà caricato qui tramite JavaScript -->
+        </div>
+    </div>
+    
+    
+
+  
+  
+</div>
+
+<script>
+
+function indietro() {
+    var urlParams = new URLSearchParams(window.location.search);
+    urlParams.delete('word');
+    var queryString = urlParams.toString();
+    $("#PAGINADAVISUALIZZARE").load("glossario.html");
+    history.pushState(null, null, '?' + queryString);	    
+}
+
+    var glossary = []; // Array per memorizzare tutte le parole del glossario
+    var currentWordIndex = -1; // Indice della parola corrente nel glossario
+
+    // Funzione per caricare il glossario e impostare l'indice della parola corrente
+    function loadGlossary() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var xmlDoc = xhr.responseXML;
+                    var entries = xmlDoc.getElementsByTagName("entry");
+                    for (var i = 0; i < entries.length; i++) {
+                        var entry = entries[i];
+                        var entryWord = entry.getElementsByTagName("word")[0].textContent;
+                        glossary.push(entryWord);
+                    }
+                    // Se la parola è presente nell'URL, trova il suo indice nel glossario
+                    var urlParams = new URLSearchParams(window.location.search);
+                    var word = urlParams.get('word');
+                    if (word) {
+                        currentWordIndex = glossary.indexOf(word);
+                    }
+                    loadGlossaryEntryContent();
+                } else {
+                    console.error('Errore durante il caricamento del file XML');
+                }
+            }
+        };
+        xhr.open("GET", "glossary.xml", true);
+        xhr.send();
+    }
+
+    // Funzione per caricare il contenuto della voce del glossario per la parola corrente
+    function loadGlossaryEntryContent() {
+        var word = glossary[currentWordIndex];
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var xmlDoc = xhr.responseXML;
+                    var entries = xmlDoc.getElementsByTagName("entry");
+                    for (var i = 0; i < entries.length; i++) {
+                        var entry = entries[i];
+                        var entryWord = entry.getElementsByTagName("word")[0].textContent;
+                        var entryDefinition = entry.getElementsByTagName("definition")[0].textContent;
+                        if (entryWord === word) {
+                            var glossaryEntryDiv = document.getElementById("glossaryEntry").getElementsByClassName("card-body")[0];
+                            glossaryEntryDiv.innerHTML = "<h5 class='card-title'>" + entryWord + "</h5><p class='card-text'>" + entryDefinition + "</p>";
+                            return;
+                        }
+                    }
+                    // Se la parola non è stata trovata nel glossario
+                    var glossaryEntryDiv = document.getElementById("glossaryEntry").getElementsByClassName("card-body")[0];
+                    glossaryEntryDiv.innerHTML = "<p class='card-text'>La voce del glossario per '" + word + "' non è stata trovata.</p>";
+                } else {
+                    console.error('Errore durante il caricamento del file XML');
+                }
+            }
+        };
+        xhr.open("GET", "glossary.xml", true);
+        xhr.send();
+    }
+
+    // Funzione per navigare alla parola precedente nel glossario
+    function goToPreviousWord() {
+        if (currentWordIndex > 0) {
+            currentWordIndex--;
+            loadGlossaryEntryContent();
+        }
+    }
+
+    // Funzione per navigare alla parola successiva nel glossario
+    function goToNextWord() {
+        if (currentWordIndex < glossary.length - 1) {
+            currentWordIndex++;
+            loadGlossaryEntryContent();
+        }
+    }
+
+    // Carica il glossario al caricamento della pagina
+    loadGlossary();
+</script>
+  
