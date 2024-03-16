@@ -1,9 +1,13 @@
 <div class="container">
 	<nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center" id="navList2">
-			<li style="width:100%; height:100%;"><input style="width:100%; height:100%;" type="text" id="searchInput" class="rounded page-link"
-				onkeyup="search()" placeholder="Cerca domanda..."></li>
+	
+		<ul class="overflow-auto pagination d-flex flex-nowrap justify-content-center" id="navList2">
+			<li style="width:100%; height:100%;"><input type="text" id="searchInput"
+				class="rounded-left form-control" onkeyup="search()"
+				placeholder="Cerca..."></li>
 		</ul>
+		
+		
 	</nav>
 	<!-- Glossario -->
 	<ul id="glossaryList" class="list-group">
