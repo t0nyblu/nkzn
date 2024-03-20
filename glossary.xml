@@ -1,98 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glossary>
   <entry>
-    <word>HTML</word>
-    <definition>HyperText Markup Language, the standard markup language for documents designed to be displayed in a web browser.</definition>
+    <word>API</word>
+    <definition>Application Programming Interface, a set of rules and protocols for building and interacting with software applications.</definition>
+  </entry>
+  <entry>
+    <word>CMS</word>
+    <definition>Content Management System, a software application or set of related programs that are used to create and manage digital content, such as websites.</definition>
   </entry>
   <entry>
     <word>CSS</word>
     <definition>Cascading Style Sheets, a style sheet language used for describing the presentation of a document written in HTML.</definition>
   </entry>
   <entry>
+    <word>FTP</word>
+    <definition>File Transfer Protocol, a standard network protocol used for the transfer of computer files between a client and server on a computer network.</definition>
+  </entry>
+  <entry>
+    <word>HTML</word>
+    <definition>HyperText Markup Language, the standard markup language for documents designed to be displayed in a web browser.</definition>
+  </entry>
+  <entry>
+    <word>HTTPS</word>
+    <definition>Hypertext Transfer Protocol Secure, an extension of HTTP that adds encryption and authentication mechanisms to provide a secure connection between clients and servers over the internet.</definition>
+  </entry>
+  <entry>
+    <word>HTTP</word>
+    <definition>Hypertext Transfer Protocol, the foundation of data communication for the World Wide Web. It defines how messages are formatted and transmitted over the internet.</definition>
+  </entry>
+  <entry>
     <word>JavaScript</word>
     <definition>A high-level programming language that conforms to the ECMAScript specification. JavaScript is commonly used for creating interactive effects within web browsers.</definition>
   </entry>
   <entry>
-  <word>SEO</word>
-  <definition>Search Engine Optimization, the practice of increasing the quantity and quality of traffic to a website through organic search engine results.</definition>
-</entry>
-<entry>
-  <word>SEM</word>
-  <definition>Search Engine Marketing, a form of internet marketing that involves the promotion of websites by increasing their visibility in search engine results pages through paid advertising.</definition>
-</entry>
-<entry>
-  <word>CMS</word>
-  <definition>Content Management System, a software application or set of related programs that are used to create and manage digital content, such as websites.</definition>
-</entry>
-<entry>
-  <word>FTP</word>
-  <definition>File Transfer Protocol, a standard network protocol used for the transfer of computer files between a client and server on a computer network.</definition>
-</entry>
-<entry>
-  <word>SSL</word>
-  <definition>Secure Sockets Layer, a standard security technology for establishing an encrypted link between a web server and a browser, ensuring that all data passed between the server and browser remains private.</definition>
-</entry>
-<entry>
-  <word>API</word>
-  <definition>Application Programming Interface, a set of rules and protocols for building and interacting with software applications.</definition>
-</entry>
-<entry>
-  <word>UX</word>
-  <definition>User Experience, the overall experience of a person using a product such as a website or computer application, especially in terms of how easy or pleasing it is to use.</definition>
-</entry>
-<entry>
-  <word>UI</word>
-  <definition>User Interface, the means by which a user interacts with a computer system, including the physical hardware and software components such as graphical user interfaces.</definition>
-</entry>
-<entry>
-  <word>SQL</word>
-  <definition>Structured Query Language, a domain-specific language used in programming and designed for managing data held in a relational database management system or for stream processing in a relational data stream management system.</definition>
-</entry>
-<entry>
-  <word>LAN</word>
-  <definition>Local Area Network, a computer network that interconnects computers within a limited area such as a residence, school, laboratory, university campus, or office building.</definition>
-</entry>
-<entry>
-  <word>WYSIWYG</word>
-  <definition>What You See Is What You Get, a system in which content displayed during editing appears very similar to the final output, eliminating the need for the user to preview the document in a separate mode.</definition>
-</entry>
-<entry>
-  <word>SVG</word>
-  <definition>Scalable Vector Graphics, an XML-based vector image format for two-dimensional graphics with support for interactivity and animation.</definition>
-</entry>
-<entry>
-  <word>HTTP</word>
-  <definition>Hypertext Transfer Protocol, the foundation of data communication for the World Wide Web. It defines how messages are formatted and transmitted over the internet.</definition>
-</entry>
-<entry>
-  <word>HTTPS</word>
-  <definition>Hypertext Transfer Protocol Secure, an extension of HTTP that adds encryption and authentication mechanisms to provide a secure connection between clients and servers over the internet.</definition>
-</entry>
-<entry>
-  <word>URL</word>
-  <definition>Uniform Resource Locator, a reference to a web resource that specifies its location on a computer network and the mechanism for retrieving it, typically in the form of a web address.</definition>
-</entry>
-<entry>
-  <word>JSON</word>
-  <definition>JavaScript Object Notation, a lightweight data-interchange format that is easy for humans to read and write, and easy for machines to parse and generate. It is often used for transmitting data between a server and a web application.</definition>
-</entry>
-<entry>
-  <word>XML</word>
-  <definition>eXtensible Markup Language, a markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable. It is commonly used for data interchange between different systems.</definition>
-</entry>
-<entry>
-  <word>UI/UX Design</word>
-  <definition>User Interface/User Experience Design, the process of designing digital products that are intuitive, easy to use, and provide a satisfying experience for the user.</definition>
-</entry>
-<entry>
-  <word>Wireframe</word>
-  <definition>A visual guide that represents the skeletal framework of a website or application, outlining its structure and layout without including design elements such as colors and images.</definition>
-</entry>
-<entry>
-  <word>Prototype</word>
-  <definition>A preliminary version of a product, typically used for testing and evaluation purposes to gather feedback and make improvements before the final version is developed.</definition>
-</entry>
-  
-  
-  <!-- Aggiungi altre voci del glossario qui -->
+    <word>JSON</word>
+    <definition>JavaScript Object Notation, a lightweight data-interchange format that is easy for humans to read and write, and easy for machines to parse and generate. It is often used for transmitting data between a server and a web application.</definition>
+  </entry>
+  <entry>
+    <word>LAN</word>
+    <definition>Local Area Network, a computer network that interconnects computers within a limited area such as a residence, school, laboratory, university campus, or office building.</definition>
+  </entry>
+  <entry>
+    <word>Prototype</word>
+    <definition>A preliminary version of a product, typically used for testing and evaluation purposes to gather feedback and make improvements before the final version is developed.</definition>
+  </entry>
+  <entry>
+    <word>SEO</word>
+    <definition>Search Engine Optimization, the practice of increasing the quantity and quality of traffic to a website through organic search engine results.</definition>
+  </entry>
+  <entry>
+    <word>SEM</word>
+    <definition>Search Engine Marketing, a form of internet marketing that involves the promotion of websites by increasing their visibility in search engine results pages through paid advertising.</definition>
+  </entry>
+  <entry>
+    <word>SSL</word>
+    <definition>Secure Sockets Layer, a standard security technology for establishing an encrypted link between a web server and a browser, ensuring that all data passed between the server and browser remains private.</definition>
+  </entry>
+  <entry>
+    <word>SQL</word>
+    <definition>Structured Query Language, a domain-specific language used in programming and designed for managing data held in a relational database management system or for stream processing in a relational data stream management system.</definition>
+  </entry>
+  <entry>
+    <word>SVG</word>
+    <definition>Scalable Vector Graphics, an XML-based vector image format for two-dimensional graphics with support for interactivity and animation.</definition>
+  </entry>
+  <entry>
+    <word>UI</word>
+    <definition>User Interface, the means by which a user interacts with a computer system, including the physical hardware and software components such as graphical user interfaces.</definition>
+  </entry>
+  <entry>
+    <word>UI/UX Design</word>
+    <definition>User Interface/User Experience Design, the process of designing digital products that are intuitive, easy to use, and provide a satisfying experience for the user.</definition>
+  </entry>
+  <entry>
+    <word>URL</word>
+    <definition>Uniform Resource Locator, a reference to a web resource that specifies its location on a computer network and the mechanism for retrieving it, typically in the form of a web address.</definition>
+  </entry>
+  <entry>
+    <word>UX</word>
+    <definition>User Experience, the overall experience of a person using a product such as a website or computer application, especially in terms of how easy or pleasing it is to use.</definition>
+  </entry>
+  <entry>
+    <word>WYSIWYG</word>
+    <definition>What You See Is What You Get, a system in which content displayed during editing appears very similar to the final output, eliminating the need for the user to preview the document in a separate mode.</definition>
+  </entry>
+  <entry>
+    <word>Wireframe</word>
+    <definition>A visual guide that represents the skeletal framework of a website or application, outlining its structure and layout without including design elements such as colors and images.</definition>
+  </entry>
+  <entry>
+    <word>XML</word>
+    <definition>eXtensible Markup Language, a markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable. It is commonly used for data interchange between different systems.</definition>
+  </entry>
 </glossary>
