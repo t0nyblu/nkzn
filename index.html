@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <link rel="stylesheet" href="stili.css">
-
+<link rel="stylesheet" href="stili.css">
 <title>NAKA.ZONE</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,53 +16,59 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
+	function updateActiveNavItem(page) {
+		var navItems = document.querySelectorAll("#navList .page-item");
+		for (var i = 0; i < navItems.length; i++) {
+			navItems[i].classList.remove('active');
+			var href = navItems[i].querySelector('a').getAttribute('href');
+			if (href.includes('?page=' + page)) {
+				navItems[i].classList.add('active');
+			}
+		}
+	}
 
-function updateActiveNavItem(page) {
-    var navItems = document.querySelectorAll("#navList .page-item");
-    for (var i = 0; i < navItems.length; i++) {
-        navItems[i].classList.remove('active');
-        var href = navItems[i].querySelector('a').getAttribute('href');
-        if (href.includes('?page=' + page)) {
-            navItems[i].classList.add('active');
-        }
-    }
-}
+	function initFunc() {
+		var urlParams = new URLSearchParams(window.location.search);
+		var page = urlParams.get('page');
+		if (page) {
+			$("#PAGINADAVISUALIZZARE").load(page + ".html");
+			updateActiveNavItem(page);
+		} else {
+			$("#PAGINADAVISUALIZZARE").load("primipassi.html"); // Carica una pagina predefinita se il parametro 'page' non è presente nell'URL
+			updateActiveNavItem("primipassi"); // Imposta il primo elemento della barra di navigazione come attivo
+		}
 
-function initFunc() {
-    var urlParams = new URLSearchParams(window.location.search);
-    var page = urlParams.get('page');
-    if (page) {
-        $("#PAGINADAVISUALIZZARE").load(page + ".html");
-        updateActiveNavItem(page);
-    } else {
-        $("#PAGINADAVISUALIZZARE").load("primipassi.html"); // Carica una pagina predefinita se il parametro 'page' non è presente nell'URL
-        updateActiveNavItem("primipassi"); // Imposta il primo elemento della barra di navigazione come attivo
-    }
-
-    $("#FOOTER").load("footer.html");
-    console.log("Entro");
-}
+		$("#FOOTER").load("footer.html");
+		console.log("Entro");
+	}
 
 	$(function() {
 		$("#contenuto").load("contenuto.html");
 		$("#header").load("header.html");
-		$("#navbar").load("navbar.html");
+		//$("#navbar").load("navbar.html");
+		$("#navbar").load("navbar.html", function() {
+			initFunc(); // Chiamata a initFunc() dopo aver caricato la navbar
+		});
 	});
 </script>
-
-
 <body onLoad="initFunc();" class="bg-light">
-<div class=" bg-light text-dark"> <!-- p-3 mb-2 -->
-	<div style="margin-top: 50px;" id="header"></div>
-	<div id="navbar"></div>
-	<br><!-- ELIMINA -->
-	<div  id="PAGINADAVISUALIZZARE"></div> <!-- class="px-3 py-4 my-2" -->
-	
-		<br></br><br></br><br></br><!-- ELIMINA -->
-	
-		<div  id=FOOTER></div> 
-	
+	<div class=" bg-light text-dark">
+		<!-- p-3 mb-2 -->
+		<div style="margin-top: 50px;" id="header"></div>
+		<div id="navbar"></div>
+		<br>
+		<!-- ELIMINA -->
+		<div id="PAGINADAVISUALIZZARE"></div>
+		<!-- class="px-3 py-4 my-2" -->
+
+		<br></br>
+		<br></br>
+		<br></br>
+		<!-- ELIMINA -->
+
+		<div id=FOOTER></div>
+
 	</div>
-	
+
 </body>
 </html>

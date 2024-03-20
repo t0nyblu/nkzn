@@ -1,44 +1,19 @@
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <div class="container">
-    <!-- div class="d-flex justify-content-between align-items-center mb-3">
-        <button type="button" onclick="goToPreviousWord()" class="btn btn-light">Paarola precedente</button>
-            <button type="button" onclick="indietro()" class="btn btn-light">Torna al glossario</button>
-        <button type="button" onclick="goToNextWord()" class="btn btn-light">Parola successiva</button>
-    </div>
-    <div id="glossaryEntry" class="card">
-        <div class="card-body"-->
-            <!-- Contenuto del glossario verrà caricato qui tramite JavaScript -->
-        <!-- /div-->
-        
-     
-        
-        <div  id="glossaryEntry" class="card">
-  <div class="tutto card-header d-flex justify-content-between align-items-center">
-        <button type="button" onclick="goToPreviousWord()" class="btn btn-light">Parola precedente</button>
-            <button type="button" onclick="indietro()" class="btn btn-light">Esci</button>
-        <button type="button" onclick="goToNextWord()" class="btn btn-light">Parola successiva</button>  </div>
-  <div class="card-body">
-    <!-- >h5 class="card-title">Special title treatment</h5-->
-    <!-- >p class="card-text">With supporting text below as a natural lead-in to additional content.</p-->
-    <!-- >a href="#" class="btn btn-primary">Go somewhere</a-->
-  </div>
-</div>
-        
-        
-    </div>
-    
-    
-
-  
-  
+<div class="container">
+	<div id="glossaryEntry" class="card">
+		<div
+			class="tutto card-header d-flex justify-content-between align-items-center">
+			<button type="button" onclick="goToPreviousWord()"
+				class="btn btn-light">Parola precedente</button>
+			<button type="button" onclick="indietro()" class="btn btn-light">Esci</button>
+			<button type="button" onclick="goToNextWord()" class="btn btn-light">Parola
+				successiva</button>
+		</div>
+		<div class="card-body">
+			<!-- >h5 class="card-title">Special title treatment</h5-->
+			<!-- >p class="card-text">With supporting text below as a natural lead-in to additional content.</p-->
+			<!-- >a href="#" class="btn btn-primary">Go somewhere</a-->
+		</div>
+	</div>
 </div>
 
 <script>
@@ -114,23 +89,52 @@ function indietro() {
         xhr.send();
     }
 
-    // Funzione per navigare alla parola precedente nel glossario
-    function goToPreviousWord() {
-        if (currentWordIndex > 0) {
-            currentWordIndex--;
-            loadGlossaryEntryContent();
-        }
-    }
+//     // Funzione per navigare alla parola precedente nel glossario
+//     function goToPreviousWord() {
+//         if (currentWordIndex > 0) {
+//             currentWordIndex--;
+//             loadGlossaryEntryContent();
+//         }
+//     }
 
-    // Funzione per navigare alla parola successiva nel glossario
-    function goToNextWord() {
-        if (currentWordIndex < glossary.length - 1) {
-            currentWordIndex++;
-            loadGlossaryEntryContent();
-        }
+//     // Funzione per navigare alla parola successiva nel glossario
+//     function goToNextWord() {
+//         if (currentWordIndex < glossary.length - 1) {
+//             currentWordIndex++;
+//             loadGlossaryEntryContent();
+//         }
+//     }
+
+
+// Funzione per navigare alla parola precedente nel glossario
+function goToPreviousWord() {
+    if (currentWordIndex > 0) {
+        currentWordIndex--;
+        loadGlossaryEntryContent();
+        updateURLParameter();
     }
+}
+
+// Funzione per navigare alla parola successiva nel glossario
+function goToNextWord() {
+    if (currentWordIndex < glossary.length - 1) {
+        currentWordIndex++;
+        loadGlossaryEntryContent();
+        updateURLParameter();
+    }
+}
+
+// Funzione per aggiornare l'URL con il nuovo valore della parola corrente
+function updateURLParameter() {
+	console.log("Entraaaa?");
+    var urlParams = new URLSearchParams(window.location.search);
+    var word = glossary[currentWordIndex];
+    urlParams.set('word', word);
+    var queryString = urlParams.toString();
+    history.pushState(null, null, '?' + queryString);
+}
+
 
     // Carica il glossario al caricamento della pagina
     loadGlossary();
 </script>
-  

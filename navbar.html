@@ -19,7 +19,26 @@ function myFunction(page, event, letter) {
     history.pushState(null, null, '?' + queryString);
     
     
-}
+} 
+
+/* function myFunction(page, event, letter) {
+    updateActiveNavItem(page); // Aggiorna l'elemento attivo della navbar
+    event.preventDefault();
+    var urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('page', page);
+
+    if (letter && page === 'glossario') {
+        urlParams.set('letter', letter);
+    } else {
+        urlParams.delete('letter');
+    }
+    urlParams.delete('word');
+    var queryString = urlParams.toString();
+    $("#PAGINADAVISUALIZZARE").load(page + ".html", function() {
+        updateActiveNavItem(page); // Aggiorna l'elemento attivo della navbar dopo aver caricato la pagina
+    });
+    history.pushState(null, null, '?' + queryString);
+} */
 
 
 //Listener per gestire i cambiamenti dell'URL
