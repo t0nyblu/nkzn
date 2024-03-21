@@ -74,6 +74,33 @@
 </div>
 
 <script>
+
+
+// Funzione per settare come attivo l'elemento <li> della lettera specificata nell'URL
+function setActiveLetter() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var letter = urlParams.get('letter');
+
+    if (letter) {
+        var activeElement = document.querySelector("#navList2 li a[href='#" + letter + "']").parentNode;
+        if (activeElement) {
+            // Rimuovi la classe 'active' da tutti gli elementi
+            var allLetters = document.querySelectorAll("#navList2 li");
+            allLetters.forEach(function(elem) {
+                elem.classList.remove("active");
+            });
+
+            // Imposta come attivo l'elemento <li> corrispondente alla lettera specificata
+            activeElement.classList.add("active");
+        }
+    }
+}
+
+// Chiamata alla funzione per impostare l'elemento <li> attivo
+setActiveLetter();
+
+
+
 	// Funzione per leggere e popolare il glossario dal file XML
 	function populateGlossaryFromXML(xmlFile) {
 		var xhttp = new XMLHttpRequest();
