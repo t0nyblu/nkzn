@@ -27,47 +27,6 @@
 		}
 	}
 
-//  	function initFunc() {
-// 		var urlParams = new URLSearchParams(window.location.search);
-// 		var page = urlParams.get('page');
-// 		if (page) {
-// 			$("#PAGINADAVISUALIZZARE").load(page + ".html");
-// 			updateActiveNavItem(page);
-// 		} else {
-// 			$("#PAGINADAVISUALIZZARE").load("primipassi.html"); // Carica una pagina predefinita se il parametro 'page' non è presente nell'URL
-// 			updateActiveNavItem("primipassi"); // Imposta il primo elemento della barra di navigazione come attivo
-// 		}
-
-// 		$("#FOOTER").load("footer.html");
-// 		console.log("Entro");
-// 	} 
-	
-
-/* 	function initFunc() {
-	    var urlParams = new URLSearchParams(window.location.search);
-	    var page = urlParams.get('page');
-	    var word = urlParams.get('word'); // Aggiungi questa riga per ottenere il valore dell'attributo 'word'
-	    if (page === 'glossario' && word) {
-	        // Se la pagina è il glossario e la parola è specificata nell'URL, carica la pagina del glossario
-	         $("#PAGINADAVISUALIZZARE").load(page + ".html", function() {
-			    console.log("La parola trovata è " + word);
-
-			    $("#PAGINADAVISUALIZZARE").load("voce.html"); // Carica una pagina predefinita se il parametro 'page' non è presente nell'URL
-			    updateActiveNavItem(page);
-	            //loadGlossary(word); // Carica la parola del glossario specificata nell'URL
-	        });
-	    } else {
-	        // Altrimenti, carica la pagina predefinita
-	        $("#PAGINADAVISUALIZZARE").load("primipassi.html", function() {
-	            updateActiveNavItem("primipassi");
-	        });
-	    }
-
-	    $("#FOOTER").load("footer.html");
-	    console.log("Entro");
-	} */
-	 
-	
  	
 	function initFunc() {
 	    var urlParams = new URLSearchParams(window.location.search);
@@ -103,7 +62,6 @@
 	} 
 
 
-
 	$(function() {
 		$("#contenuto").load("contenuto.html");
 		$("#header").load("header.html");
@@ -123,9 +81,7 @@
 		<div id="PAGINADAVISUALIZZARE"></div>
 		<!-- class="px-3 py-4 my-2" -->
 
-		<br></br>
-		<br></br>
-		<br></br>
+		<br></br> <br></br> <br></br>
 		<!-- ELIMINA -->
 
 		<div id=FOOTER></div>

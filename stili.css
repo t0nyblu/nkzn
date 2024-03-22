@@ -34,6 +34,10 @@
     outline: none;
 }
 
+button:active,
+button:focus {
+    outline: none;
+}
 
 *:focus {
     outline: none;

@@ -120,12 +120,7 @@ setActiveLetter();
 		var entries = xmlDoc.getElementsByTagName("entry");
 		for (var i = 0; i < entries.length; i++) {
 			var word = entries[i].getElementsByTagName("word")[0].childNodes[0].nodeValue;
-			
-// 			console.log("la parola e'");
-// 			console.log(word);
-			
-			
-			
+					
 			var definition = entries[i].getElementsByTagName("definition")[0].childNodes[0].nodeValue;
 			var firstLetter = word.charAt(0).toUpperCase();
 

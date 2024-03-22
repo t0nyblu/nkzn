@@ -14,7 +14,121 @@
 			<!-- >a href="#" class="btn btn-primary">Go somewhere</a-->
 		</div>
 	</div>
-</div>
+<!-- </div> -->
+
+
+
+<!-- AGGIUNTA GIU' -->
+
+
+
+
+<!-- <div class="container"> -->
+<!--     <div id="glossaryEntry" class="card"> -->
+<!--         <div class="card-header d-flex justify-content-between align-items-center"> -->
+<!--             <button type="button" onclick="goToPreviousWord()" class="btn btn-light">Parola precedente</button> -->
+<!--             <button type="button" onclick="indietro()" class="btn btn-light">Esci</button> -->
+<!--             <button type="button" onclick="goToNextWord()" class="btn btn-light">Parola successiva</button> -->
+<!--         </div> -->
+<!--         <div class="card-body"> -->
+<!--             Contenuto del glossario caricato dinamicamente -->
+<!--         </div> -->
+<!--     </div> -->
+
+<!--     <div id="relatedQuestions" class="card mt-3"> -->
+<!--         <div class="card-header"> -->
+<!--             Domande correlate -->
+<!--         </div> -->
+        <ul class="list-group list-group-flush" id="relatedQuestionsList">
+            <!-- Le domande correlate verranno caricate qui dinamicamente -->
+        </ul>
+    </div>
+<!-- </div> -->
+
+<script>
+//Funzione per caricare le domande correlate dalla parola specificata nel glossario
+function loadRelatedQuestions() {
+    var word = glossary[currentWordIndex];
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var xmlDoc = xhr.responseXML;
+                var entries = xmlDoc.getElementsByTagName("entry");
+                var relatedQuestionsList = document.getElementById("relatedQuestionsList");
+                relatedQuestionsList.innerHTML = ""; // Pulisce la lista prima di aggiungere nuove domande e risposte
+                for (var i = 0; i < entries.length; i++) {
+                    var entry = entries[i];
+                    var entryWords = entry.getElementsByTagName("word");
+                    var entryQuestions = entry.getElementsByTagName("question");
+                    var entryAnswers = entry.getElementsByTagName("answer");
+                    var found = false;
+                    for (var j = 0; j < entryWords.length; j++) {
+                        var entryWord = entryWords[j].textContent;
+                        if (word.includes(entryWord)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                    	
+                    	var titolo = document.createElement("p");
+                    	titolo.className = "lead text-center";
+                    	var br1 = document.createElement("br");
+                    	var br2 = document.createElement("br");
+
+                        titolo.textContent = "Domande frequenti correlate:";	
+                        relatedQuestionsList.appendChild(br1);
+                        relatedQuestionsList.appendChild(br2);
+
+                        relatedQuestionsList.appendChild(titolo);
+
+
+
+                        // Aggiunge le domande e le rispettive risposte correlate alla lista
+                        for (var k = 0; k < entryQuestions.length; k++) {
+                            var question = entryQuestions[k].textContent;
+                            var answer = entryAnswers[k].textContent;
+                            var cardDiv = document.createElement("div");
+                            cardDiv.className = "card mb-3";
+                            //cardDiv.style = "width: 18rem;";
+                            var cardBodyDiv = document.createElement("div");
+                            cardBodyDiv.className = "card-body";
+                            var cardTitle = document.createElement("h5");
+                            cardTitle.className = "card-title";
+                            cardTitle.textContent = question;
+                            var cardText = document.createElement("p");
+                            cardText.className = "card-text";
+                            cardText.textContent = answer;
+                            cardBodyDiv.appendChild(cardTitle);
+                            cardBodyDiv.appendChild(cardText);
+                            cardDiv.appendChild(cardBodyDiv);
+                            relatedQuestionsList.appendChild(cardDiv);
+                        }
+                        return;
+                    }
+                }
+            } else {
+                console.error('Errore durante il caricamento del file XML');
+            }
+        }
+    };
+    xhr.open("GET", "domande.xml", true);
+    xhr.send();
+}
+
+
+    // Carica le domande correlate all'avvio della pagina
+    loadRelatedQuestions();
+</script>
+
+
+
+
+<!-- AGGIUNTA SU -->
+
+
+
 
 <script>
 
@@ -23,7 +137,8 @@ function indietro() {
     urlParams.delete('word');
     var queryString = urlParams.toString();
     $("#PAGINADAVISUALIZZARE").load("glossario.html");
-    history.pushState(null, null, '?' + queryString);	    
+    history.pushState(null, null, '?' + queryString);	   
+
 }
 
     var glossary = []; // Array per memorizzare tutte le parole del glossario
@@ -87,30 +202,16 @@ function indietro() {
         };
         xhr.open("GET", "glossary.xml", true);
         xhr.send();
+        loadRelatedQuestions() 
     }
-
-//     // Funzione per navigare alla parola precedente nel glossario
-//     function goToPreviousWord() {
-//         if (currentWordIndex > 0) {
-//             currentWordIndex--;
-//             loadGlossaryEntryContent();
-//         }
-//     }
-
-//     // Funzione per navigare alla parola successiva nel glossario
-//     function goToNextWord() {
-//         if (currentWordIndex < glossary.length - 1) {
-//             currentWordIndex++;
-//             loadGlossaryEntryContent();
-//         }
-//     }
-
 
 // Funzione per navigare alla parola precedente nel glossario
 function goToPreviousWord() {
     if (currentWordIndex > 0) {
         currentWordIndex--;
         loadGlossaryEntryContent();
+        loadRelatedQuestions();
+
         updateURLParameter();
     }
 }
@@ -120,6 +221,9 @@ function goToNextWord() {
     if (currentWordIndex < glossary.length - 1) {
         currentWordIndex++;
         loadGlossaryEntryContent();
+        
+        loadRelatedQuestions();
+
         updateURLParameter();
     }
 }
