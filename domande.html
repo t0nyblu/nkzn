@@ -29,47 +29,57 @@
         xhttp.send();
     }
 
- // Funzione per analizzare il file XML e popolare il glossario
+    // Funzione per analizzare il file XML e popolare il glossario
     function parseXML(xml) {
         var xmlDoc = xml.responseXML;
         var glossaryList = document.getElementById("glossaryList");
 
         var entries = xmlDoc.getElementsByTagName("entry");
         for (var i = 0; i < entries.length; i++) {
-            var word = entries[i].getElementsByTagName("word")[0].childNodes[0].nodeValue;
-            var definition = entries[i].getElementsByTagName("definition")[0].childNodes[0].nodeValue;
-            var listItem = document.createElement("li");
-            listItem.className = "list-group-item";
-            var strongElement = document.createElement("strong");
-            strongElement.appendChild(document.createTextNode(word + ": "));
-            listItem.appendChild(strongElement);
-            listItem.appendChild(document.createTextNode(definition));
+            var word = entries[i].getElementsByTagName("word")[0].textContent;
+            var qa = entries[i].getElementsByTagName("qa")[0];
+            var questions = qa.getElementsByTagName("item");
+            
+            for (var j = 0; j < questions.length; j++) {
+                var question = questions[j].getElementsByTagName("question")[0].textContent;
+                var answer = questions[j].getElementsByTagName("answer")[0].textContent;
+                var listItem = document.createElement("li");
+                listItem.className = "list-group-item";
+                var strongElement = document.createElement("strong");
+//                 strongElement.appendChild(document.createTextNode(word + ": "));
+//                 listItem.appendChild(strongElement);
+//                 listItem.appendChild(document.createTextNode(question + " - " + answer));
+                strongElement.appendChild(document.createTextNode(question+" "));
+                listItem.appendChild(strongElement);
+                listItem.appendChild(document.createTextNode(answer));
 
-            // Aggiungi evento mouseover per evidenziare l'elemento
-            listItem.addEventListener('mouseover', function () {
-                this.style.backgroundColor = "#f0f0f0"; // Cambia il colore di sfondo quando il mouse passa sopra
-            });
 
-            // Aggiungi evento mouseout per ripristinare il colore originale
-            listItem.addEventListener('mouseout', function () {
-                this.style.backgroundColor = ""; // Ripristina il colore originale quando il mouse esce dall'elemento
-            });
+                // Aggiungi evento mouseover per evidenziare l'elemento
+                listItem.addEventListener('mouseover', function () {
+                    this.style.backgroundColor = "#f0f0f0"; // Cambia il colore di sfondo quando il mouse passa sopra
+                });
 
-            // Aggiungi evento click per mostrare solo l'elemento cliccato
-            listItem.addEventListener('click', function () {
-                var ul = document.getElementById("glossaryList");
-                var li = ul.getElementsByTagName('li');
+                // Aggiungi evento mouseout per ripristinare il colore originale
+                listItem.addEventListener('mouseout', function () {
+                    this.style.backgroundColor = ""; // Ripristina il colore originale quando il mouse esce dall'elemento
+                });
 
-                for (var j = 0; j < li.length; j++) {
-                    if (li[j] !== this) {
-                        li[j].style.display = "none"; // Nascondi gli altri elementi
-                    } else {
-                        li[j].style.display = ""; // Mostra solo l'elemento cliccato
+                // Aggiungi evento click per mostrare solo l'elemento cliccato
+                listItem.addEventListener('click', function () {
+                    var ul = document.getElementById("glossaryList");
+                    var li = ul.getElementsByTagName('li');
+
+                    for (var k = 0; k < li.length; k++) {
+                        if (li[k] !== this) {
+                            li[k].style.display = "none"; // Nascondi gli altri elementi
+                        } else {
+                            li[k].style.display = ""; // Mostra solo l'elemento cliccato
+                        }
                     }
-                }
-            });
+                });
 
-            glossaryList.appendChild(listItem);
+                glossaryList.appendChild(listItem);
+            }
         }
     }
 
