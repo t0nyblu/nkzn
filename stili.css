@@ -23,22 +23,8 @@
    font-family: myFont;
    color: #400040;
 }
-
   
 .tutto {
    font-family: myFont2;
    color: #400040;
-}
-
-#navList2 a:focus {
-    outline: none;
-}
-
-button:active,
-button:focus {
-    outline: none;
-}
-
-*:focus {
-    outline: none;
 }

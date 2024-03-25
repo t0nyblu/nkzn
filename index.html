@@ -29,6 +29,7 @@
 
  	
 	function initFunc() {
+		console.log("Eseguo initFunc");
 	    var urlParams = new URLSearchParams(window.location.search);
 	    var page = urlParams.get('page');
 	    var word = urlParams.get('word'); // Aggiungi questa riga per ottenere il valore dell'attributo 'word'
@@ -58,7 +59,6 @@
 	    }
 
 	    $("#FOOTER").load("footer.html");
-	    console.log("Entro");
 	} 
 
 
@@ -71,7 +71,7 @@
 		});
 	});
 </script>
-<body onLoad="initFunc();" class="bg-light">
+<body class="bg-light"> <!-- onLoad="initFunc();"  -->
 	<div class=" bg-light text-dark">
 		<!-- p-3 mb-2 -->
 		<div style="margin-top: 50px;" id="header"></div>

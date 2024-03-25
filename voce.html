@@ -5,8 +5,7 @@
 			<button type="button" onclick="goToPreviousWord()"
 				class="btn btn-light">Parola precedente</button>
 			<button type="button" onclick="indietro()" class="btn btn-light">Esci</button>
-			<button type="button" onclick="goToNextWord()" class="btn btn-light">Parola
-				successiva</button>
+			<button type="button" onclick="goToNextWord()" class="btn btn-light">Parola successiva</button>
 		</div>
 		<div class="card-body">
 			<!-- >h5 class="card-title">Special title treatment</h5-->
@@ -14,36 +13,11 @@
 			<!-- >a href="#" class="btn btn-primary">Go somewhere</a-->
 		</div>
 	</div>
-<!-- </div> -->
 
-
-
-<!-- AGGIUNTA GIU' -->
-
-
-
-
-<!-- <div class="container"> -->
-<!--     <div id="glossaryEntry" class="card"> -->
-<!--         <div class="card-header d-flex justify-content-between align-items-center"> -->
-<!--             <button type="button" onclick="goToPreviousWord()" class="btn btn-light">Parola precedente</button> -->
-<!--             <button type="button" onclick="indietro()" class="btn btn-light">Esci</button> -->
-<!--             <button type="button" onclick="goToNextWord()" class="btn btn-light">Parola successiva</button> -->
-<!--         </div> -->
-<!--         <div class="card-body"> -->
-<!--             Contenuto del glossario caricato dinamicamente -->
-<!--         </div> -->
-<!--     </div> -->
-
-<!--     <div id="relatedQuestions" class="card mt-3"> -->
-<!--         <div class="card-header"> -->
-<!--             Domande correlate -->
-<!--         </div> -->
-        <ul class="list-group list-group-flush" id="relatedQuestionsList">
-            <!-- Le domande correlate verranno caricate qui dinamicamente -->
-        </ul>
-    </div>
-<!-- </div> -->
+	<ul class="list-group list-group-flush" id="relatedQuestionsList">
+		<!-- Le domande correlate verranno caricate qui dinamicamente -->
+	</ul>
+</div>
 
 <script>
 //Funzione per caricare le domande correlate dalla parola specificata nel glossario
@@ -76,14 +50,10 @@ function loadRelatedQuestions() {
                     	titolo.className = "lead text-center";
                     	var br1 = document.createElement("br");
                     	var br2 = document.createElement("br");
-
                         titolo.textContent = "Domande frequenti correlate:";	
                         relatedQuestionsList.appendChild(br1);
                         relatedQuestionsList.appendChild(br2);
-
                         relatedQuestionsList.appendChild(titolo);
-
-
 
                         // Aggiunge le domande e le rispettive risposte correlate alla lista
                         for (var k = 0; k < entryQuestions.length; k++) {
@@ -116,21 +86,6 @@ function loadRelatedQuestions() {
     xhr.open("GET", "questions.xml", true);
     xhr.send();
 }
-
-
-    // Carica le domande correlate all'avvio della pagina
-    loadRelatedQuestions();
-</script>
-
-
-
-
-<!-- AGGIUNTA SU -->
-
-
-
-
-<script>
 
 function indietro() {
     var urlParams = new URLSearchParams(window.location.search);
@@ -210,8 +165,6 @@ function goToPreviousWord() {
     if (currentWordIndex > 0) {
         currentWordIndex--;
         loadGlossaryEntryContent();
-        loadRelatedQuestions();
-
         updateURLParameter();
     }
 }
@@ -221,23 +174,18 @@ function goToNextWord() {
     if (currentWordIndex < glossary.length - 1) {
         currentWordIndex++;
         loadGlossaryEntryContent();
-        
-        loadRelatedQuestions();
-
         updateURLParameter();
     }
 }
 
 // Funzione per aggiornare l'URL con il nuovo valore della parola corrente
 function updateURLParameter() {
-	console.log("Entraaaa?");
     var urlParams = new URLSearchParams(window.location.search);
     var word = glossary[currentWordIndex];
     urlParams.set('word', word);
     var queryString = urlParams.toString();
     history.pushState(null, null, '?' + queryString);
 }
-
 
     // Carica il glossario al caricamento della pagina
     loadGlossary();
