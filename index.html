@@ -2,14 +2,12 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" href="stili.css">
-<title>NAKA.ZONE</title>
+<title>NAKA ZONE</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -27,66 +25,63 @@
 		}
 	}
 
- 	
 	function initFunc() {
 		console.log("Eseguo initFunc");
-	    var urlParams = new URLSearchParams(window.location.search);
-	    var page = urlParams.get('page');
-	    var word = urlParams.get('word'); // Aggiungi questa riga per ottenere il valore dell'attributo 'word'
-	    if (page){
-	    if (page === 'glossario' && word) {
-	        // Se la pagina è il glossario e la parola è specificata nell'URL, carica la pagina del glossario
-	         $("#PAGINADAVISUALIZZARE").load(page + ".html", function() {
-			    console.log("La parola trovata è " + word);
+		var urlParams = new URLSearchParams(window.location.search);
+		var page = urlParams.get('page');
+		var idquestion = urlParams.get('idquestion');
+		var word = urlParams.get('word');
+		if (page) {
+			if (page === 'domande' && idquestion) {
 
-			    $("#PAGINADAVISUALIZZARE").load("voce.html"); // Carica una pagina predefinita se il parametro 'page' non è presente nell'URL
-			    updateActiveNavItem(page);
-	            //loadGlossary(word); // Carica la parola del glossario specificata nell'URL
-	        });
-	    }else{
-	    	
-	        $("#PAGINADAVISUALIZZARE").load(page+".html", function() {
-	            updateActiveNavItem(page);
-	        });
-	    	
-	    }
-	    
-	    } else {
-	        // Altrimenti, carica la pagina predefinita
-	        $("#PAGINADAVISUALIZZARE").load("primipassi.html", function() {
-	            updateActiveNavItem("primipassi");
-	        });
-	    }
+				$("#PAGINADAVISUALIZZARE").load(page + ".html", function() {
+					console.log("L'id della domanda è " + idquestion);
 
-	    $("#FOOTER").load("footer.html");
-	} 
+					$("#PAGINADAVISUALIZZARE").load("domanda.html");
+					updateActiveNavItem(page);
+				});
 
+			} else {
+				if (page === 'glossario' && word) {
+					$("#PAGINADAVISUALIZZARE").load(page + ".html", function() {
+						console.log("La parola trovata è " + word);
+
+						$("#PAGINADAVISUALIZZARE").load("voce.html");
+						updateActiveNavItem(page);
+					});
+				} else {
+
+					$("#PAGINADAVISUALIZZARE").load(page + ".html", function() {
+						updateActiveNavItem(page);
+					});
+
+				}
+			}
+		} else {
+			// Altrimenti, carica la pagina predefinita
+			$("#PAGINADAVISUALIZZARE").load("primipassi.html", function() {
+				updateActiveNavItem("primipassi");
+			});
+		}
+
+		$("#FOOTER").load("footer.html");
+	}
 
 	$(function() {
 		$("#contenuto").load("contenuto.html");
 		$("#header").load("header.html");
-		//$("#navbar").load("navbar.html");
 		$("#navbar").load("navbar.html", function() {
 			initFunc(); // Chiamata a initFunc() dopo aver caricato la navbar
 		});
 	});
 </script>
-<body class="bg-light"> <!-- onLoad="initFunc();"  -->
+
+<body class="bg-light">
 	<div class=" bg-light text-dark">
-		<!-- p-3 mb-2 -->
 		<div style="margin-top: 50px;" id="header"></div>
 		<div id="navbar"></div>
-		<br>
-		<!-- ELIMINA -->
-		<div id="PAGINADAVISUALIZZARE"></div>
-		<!-- class="px-3 py-4 my-2" -->
-
-		<br></br> <br></br> <br></br>
-		<!-- ELIMINA -->
-
+		<div style="margin-top: 20px;" id="PAGINADAVISUALIZZARE"></div>
 		<div id=FOOTER></div>
-
 	</div>
-
 </body>
 </html>

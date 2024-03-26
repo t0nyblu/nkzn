@@ -1,10 +1,167 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
 
-</body>
-</html>
+    <div class="container">
+        <div class="card">
+            		<div class="tutto card-header d-flex justify-content-between align-items-center">
+			<button type="button" onclick="goToPreviousQuestion()"
+				class="btn btn-light">Domanda precedente</button>
+			<button type="button" onclick="indietro()" class="btn btn-light">Esci</button>
+			<button type="button" onclick="goToNextQuestion()" class="btn btn-light">Domanda successiva</button>
+		</div>
+            <div class="card-body">
+                <h5 id="questionText" class="card-text"></h5>
+                <p id="answerText" class="card-text"></p>
+                 <div id="sourcesSection">
+        <a class="text-muted card-link">Fonti:</a>
+        <!-- Qui verranno aggiunti dinamicamente i link alle fonti -->
+    </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Aggiungi qui eventuali script JavaScript -->
+
+<script>
+function funzioncina(){
+    // Ottieni l'ID della domanda dall'URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var questionId = urlParams.get('idquestion');
+
+    // Carica la domanda e la risposta corrispondenti dall'XML
+    console.log("In onload l'id della domanda vale "+questionId);
+    loadQuestionFromXML(questionId);
+}
+
+
+    // Funzione per caricare la domanda e la risposta dal file XML
+    function loadQuestionFromXML(questionId) {
+    	console.log("Apertura domanda numero"+questionId);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                parseXML(this, questionId);
+            }
+        };
+        xhttp.open("GET", "questions.xml", true);
+        xhttp.send();
+    }
+
+    // Funzione per analizzare il file XML e trovare la domanda e la risposta corrispondenti
+/*     function parseXML(xml, questionId) {
+    	console.log("In parseXML l'id della domanda e' "+questionId);
+        var xmlDoc = xml.responseXML;
+        var entries = xmlDoc.getElementsByTagName("entry");
+
+        for (var i = 0; i < entries.length; i++) {
+            var qa = entries[i].getElementsByTagName("qa")[0];
+            var questions = qa.getElementsByTagName("item");
+
+            for (var j = 0; j < questions.length; j++) {
+                var currentQuestionId = questions[j].getElementsByTagName("question")[0].getAttribute("idquestion");
+
+                // Se l'ID della domanda corrente corrisponde a quello specificato nell'URL
+                if (currentQuestionId === questionId) {
+                    var questionText = questions[j].getElementsByTagName("question")[0].textContent;
+                    var answerText = questions[j].getElementsByTagName("answer")[0].textContent;
+
+                    // Aggiorna il contenuto HTML con la domanda e la risposta trovate
+                    document.getElementById("questionText").innerText = questionText;
+                    document.getElementById("answerText").innerText = answerText;
+
+                    return; // Esci dalla funzione dopo aver trovato la corrispondenza
+                }
+            }
+        }
+
+        // Se non viene trovata nessuna corrispondenza, visualizza un messaggio di errore
+        document.getElementById("questionText").innerText = "Domanda non trovata";
+        document.getElementById("answerText").innerText = "La domanda specificata non è presente nel database.";
+    } */
+    
+    
+    function parseXML(xml, questionId) {
+        var xmlDoc = xml.responseXML;
+        var entries = xmlDoc.getElementsByTagName("entry");
+
+        for (var i = 0; i < entries.length; i++) {
+            var qa = entries[i].getElementsByTagName("qa")[0];
+            var questions = qa.getElementsByTagName("item");
+
+            for (var j = 0; j < questions.length; j++) {
+                var currentQuestionId = questions[j].getElementsByTagName("question")[0].getAttribute("idquestion");
+
+                // Se l'ID della domanda corrente corrisponde a quello specificato nell'URL
+                if (currentQuestionId === questionId) {
+                    var questionText = questions[j].getElementsByTagName("question")[0].textContent;
+                    var answerText = questions[j].getElementsByTagName("answer")[0].textContent;
+
+                    // Aggiorna il contenuto HTML con la domanda e la risposta trovate
+                    document.getElementById("questionText").innerText = questionText;
+                    document.getElementById("answerText").innerText = answerText;
+
+                    // Aggiungi i link alle fonti se presenti
+                    var sources = questions[j].getElementsByTagName("sources");
+                    if (sources.length > 0) {
+                        var sourceLinks = sources[0].getElementsByTagName("source");
+                        var sourcesSection = document.getElementById("sourcesSection");
+
+                        // Aggiungi ogni link alle fonti
+                        for (var k = 0; k < sourceLinks.length; k++) {
+                            var sourceLink = document.createElement("a");
+                            sourceLink.setAttribute("href", sourceLinks[k].textContent.trim());
+                            sourceLink.classList.add("card-link");
+                            sourceLink.textContent = "Fonte " + (k + 1);
+                            sourcesSection.appendChild(sourceLink);
+                        }
+                    }
+
+                    return; // Esci dalla funzione dopo aver trovato la corrispondenza
+                }
+            }
+        }
+
+        // Se non viene trovata nessuna corrispondenza, visualizza un messaggio di errore
+        document.getElementById("questionText").innerText = "Domanda non trovata";
+        document.getElementById("answerText").innerText = "La domanda specificata non è presente nel database.";
+    }
+
+    
+    function indietro() {
+        var urlParams = new URLSearchParams(window.location.search);
+        urlParams.delete('idquestion');
+        var queryString = urlParams.toString();
+        $("#PAGINADAVISUALIZZARE").load("domande.html");
+        history.pushState(null, null, '?' + queryString);	   
+
+    }
+    
+
+ // Funzione per navigare alla domanda precedente 
+ function goToPreviousQuestion() {
+	    var urlParams = new URLSearchParams(window.location.search);
+	    var questionId = urlParams.get('idquestion');
+        urlParams.delete('idquestion');
+	    urlParams.set('idquestion', parseInt(questionId)-1);
+	    var queryString = urlParams.toString();
+	    history.pushState(null, null, '?' + queryString);
+	    loadQuestionFromXML((parseInt(questionId)-1).toString());
+ }
+
+ // Funzione per navigare alla domanda successiva
+ function goToNextQuestion() {
+	    var urlParams = new URLSearchParams(window.location.search);
+	    var questionId = urlParams.get('idquestion');
+        urlParams.delete('idquestion');
+	    urlParams.set('idquestion', parseInt(questionId)+1);
+	    var queryString = urlParams.toString();
+	    history.pushState(null, null, '?' + queryString);
+	    loadQuestionFromXML((parseInt(questionId)+1).toString());
+	    
+ }
+
+    
+    funzioncina();
+    console.log("qui arrivo");
+    
+</script>

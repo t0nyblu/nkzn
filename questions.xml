@@ -4,15 +4,15 @@
     <word>API</word>
     <qa>
       <item>
-        <question>Cos'è un'API?</question>
+        <question idquestion="1">Cos'è un'API?</question>
         <answer>Un'API (Application Programming Interface) è un insieme di regole e protocolli per la costruzione e l'interazione con le applicazioni software.</answer>
       </item>
       <item>
-        <question>Come funziona un'API?</question>
+        <question  idquestion="2">Come funziona un'API?</question>
         <answer>Le API consentono alle applicazioni di comunicare tra loro o con altre risorse esterne in un formato standardizzato.</answer>
       </item>
       <item>
-        <question>In che modo le API vengono utilizzate nelle applicazioni?</question>
+        <question idquestion="3">In che modo le API vengono utilizzate nelle applicazioni?</question>
         <answer>Le API sono utilizzate per integrare funzionalità esterne, accedere a dati o servizi, e automatizzare processi all'interno di un'applicazione.</answer>
       </item>
     </qa>
@@ -21,15 +21,15 @@
     <word>CMS</word>
     <qa>
       <item>
-        <question>Cos'è un CMS?</question>
+        <question idquestion="4">Cos'è un CMS?</question>
         <answer>Un CMS (Content Management System) è un'applicazione software o un insieme di programmi correlati utilizzati per creare e gestire contenuti digitali, come siti web.</answer>
       </item>
       <item>
-        <question>Come funziona un Content Management System?</question>
+        <question idquestion="5">Come funziona un Content Management System?</question>
         <answer>Un CMS consente agli utenti di aggiornare e modificare facilmente i contenuti di un sito web senza dover conoscere linguaggi di programmazione o avere competenze tecniche avanzate.</answer>
       </item>
       <item>
-        <question>Quali sono i vantaggi nell'utilizzare un CMS per la gestione dei contenuti?</question>
+        <question idquestion="6">Quali sono i vantaggi nell'utilizzare un CMS per la gestione dei contenuti?</question>
         <answer>I CMS offrono funzionalità di gestione dei contenuti, organizzazione dei dati, collaborazione multiutente e spesso forniscono strumenti per la personalizzazione e l'ottimizzazione del sito.</answer>
       </item>
     </qa>
@@ -38,15 +38,15 @@
     <word>CSS</word>
     <qa>
       <item>
-        <question>Cos'è CSS?</question>
+        <question idquestion="7">Cos'è CSS?</question>
         <answer>CSS (Cascading Style Sheets) è un linguaggio di fogli di stile utilizzato per definire la presentazione di un documento scritto in HTML.</answer>
       </item>
       <item>
-        <question>Come si utilizza CSS?</question>
+        <question idquestion="8">Come si utilizza CSS?</question>
         <answer>CSS viene utilizzato per definire il layout, i colori, i tipi di carattere e altri aspetti della presentazione di un sito web o di una pagina HTML.</answer>
       </item>
       <item>
-        <question>Che vantaggi offre l'utilizzo di CSS nella progettazione web?</question>
+        <question idquestion="9">Che vantaggi offre l'utilizzo di CSS nella progettazione web?</question>
         <answer>CSS separa il contenuto HTML dalla sua presentazione, consentendo una maggiore flessibilità, coerenza visiva e facilità di manutenzione.</answer>
       </item>
     </qa>
@@ -59,8 +59,16 @@
   </words>
   <qa>
     <item>
-      <question>Cosa si intende per UI/UX Design?</question>
+      <question idquestion="10">Cosa si intende per UI/UX Design?</question>
       <answer>UI/UX Design, o User Interface/User Experience Design, è il processo di progettazione di prodotti digitali che sono intuitivi, facili da usare e offrono un'esperienza soddisfacente per l'utente, tenendo conto sia dell'interfaccia utente (UI) che dell'esperienza utente (UX).</answer>
+      <sources>
+      <source>
+      link1
+      </source>
+      <source>
+      link2
+      </source>
+      </sources>
     </item>
     <!-- Altre domande e risposte -->
   </qa>

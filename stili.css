@@ -4,11 +4,12 @@
    src: url(zetafont.ttf);
 }
   
-   
+     
 @font-face {
    font-family: myFont2;
-   src: url(tuttofont.ttf);
+   src: url(altrofont.ttf);
 }
+  
 
 @font-face {
    font-family: fontPerNav;
@@ -24,7 +25,17 @@
    color: #400040;
 }
   
-.tutto {
+ 
+ .tutto {
    font-family: myFont2;
    color: #400040;
+}
+
+/* CSS per espandere gli elementi quando ci passi sopra con il mouse */
+.list-group-item {
+    transition: height 0.3s ease; /* Effetto di transizione per una transizione fluida */
+}
+
+.list-group-item:hover {
+    height: auto; /* Al passaggio del mouse sopra l'elemento, l'altezza viene impostata su "auto" per consentire l'espansione */
 }

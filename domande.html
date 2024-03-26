@@ -1,103 +1,112 @@
+<!-- Codice HTML per la pagina delle domande -->
 <div class="container">
-	<nav aria-label="Page navigation example">
-	
-		<ul class="overflow-auto pagination d-flex flex-nowrap justify-content-center" id="navList2">
-			<li style="width:100%; height:100%;"><input type="text" id="searchInput"
-				class="rounded-left form-control" onkeyup="search()"
-				placeholder="Cerca..."></li>
-		</ul>
-		
-		
-	</nav>
-	<!-- Glossario -->
-	<ul id="glossaryList" class="list-group">
-		<!-- Il glossario verrà popolato qui -->
-	</ul>
+    <nav aria-label="Page navigation example">
+        <ul class="overflow-auto pagination d-flex flex-nowrap justify-content-center" id="navList2">
+            <li style="width:100%; height:100%;"><input type="text" id="searchInput"
+                    class="rounded-left form-control" onkeyup="search()" placeholder="Cerca..."></li>
+        </ul>
+    </nav>
+    <!-- Lista delle domande -->
+    <ul id="questionsList" class="list-group">
+        <!-- Le domande verranno caricate qui -->
+    </ul>
 </div>
 
-
 <script>
-    // Funzione per leggere e popolare il glossario dal file XML
-    function populateGlossaryFromXML(xmlFile) {
+    // Funzione per leggere e popolare le domande dal file XML
+    function populateQuestionsFromXML(xmlFile) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                parseXML(this);
+                parseQuestionsXML(this);
             }
         };
         xhttp.open("GET", xmlFile, true);
         xhttp.send();
     }
 
-    // Funzione per analizzare il file XML e popolare il glossario
-    function parseXML(xml) {
+ // Funzione per analizzare il file XML e popolare le domande
+    function parseQuestionsXML(xml) {
         var xmlDoc = xml.responseXML;
-        var glossaryList = document.getElementById("glossaryList");
+        var questionsList = document.getElementById("questionsList");
 
         var entries = xmlDoc.getElementsByTagName("entry");
         for (var i = 0; i < entries.length; i++) {
             var word = entries[i].getElementsByTagName("word")[0].textContent;
             var qa = entries[i].getElementsByTagName("qa")[0];
             var questions = qa.getElementsByTagName("item");
-            
+
             for (var j = 0; j < questions.length; j++) {
                 var question = questions[j].getElementsByTagName("question")[0].textContent;
                 var answer = questions[j].getElementsByTagName("answer")[0].textContent;
+                var idquestion = questions[j].getElementsByTagName("question")[0].getAttribute("idquestion");
+
                 var listItem = document.createElement("li");
                 listItem.className = "list-group-item";
                 var strongElement = document.createElement("strong");
-//                 strongElement.appendChild(document.createTextNode(word + ": "));
-//                 listItem.appendChild(strongElement);
-//                 listItem.appendChild(document.createTextNode(question + " - " + answer));
-                strongElement.appendChild(document.createTextNode(question+" "));
+                strongElement.appendChild(document.createTextNode(question + " "));
                 listItem.appendChild(strongElement);
                 listItem.appendChild(document.createTextNode(answer));
 
+                // Imposta l'attributo data-idquestion con l'ID della domanda
+                listItem.setAttribute("data-idquestion", idquestion);
 
-                // Aggiungi evento mouseover per evidenziare l'elemento
-                listItem.addEventListener('mouseover', function () {
-                    this.style.backgroundColor = "#f0f0f0"; // Cambia il colore di sfondo quando il mouse passa sopra
+                // Aggiungi evento click per aprire la pagina della domanda
+/*                 listItem.addEventListener('click', function () {
+                    var idquestion = this.getAttribute("data-idquestion");
+                   var urlParams = new URLSearchParams(window.location.search);
+    			    var page = urlParams.get('page');
+
+    			    $("#PAGINADAVISUALIZZARE").load("domanda.html"); // Carica una pagina predefinita se il parametro 'page' non è presente nell'URL
+                    window.location.href =  window.location.href+"&idquestion=" + idquestion;
+
+    			    updateActiveNavItem("domande");
+    			    
                 });
+                 */
+                
+    			
+    			listItem.addEventListener('click', function () {
+    				
+                    console.log(this.getAttribute("data-idquestion"));
 
-                // Aggiungi evento mouseout per ripristinare il colore originale
-                listItem.addEventListener('mouseout', function () {
-                    this.style.backgroundColor = ""; // Ripristina il colore originale quando il mouse esce dall'elemento
-                });
+    				
+    			    var urlParams = new URLSearchParams(window.location.search);
+    			    var page = urlParams.get('page');
+    			    //console.log("La parola cliccata è " + word);
 
-                // Aggiungi evento click per mostrare solo l'elemento cliccato
-                listItem.addEventListener('click', function () {
-                    var ul = document.getElementById("glossaryList");
-                    var li = ul.getElementsByTagName('li');
+    			    $("#PAGINADAVISUALIZZARE").load("domanda.html"); // Carica una pagina predefinita se il parametro 'page' non è presente nell'URL
+    			    updateActiveNavItem(page);
 
-                    for (var k = 0; k < li.length; k++) {
-                        if (li[k] !== this) {
-                            li[k].style.display = "none"; // Nascondi gli altri elementi
-                        } else {
-                            li[k].style.display = ""; // Mostra solo l'elemento cliccato
-                        }
-                    }
-                });
+    			    var currentURL = window.location.href;
+    			    var separator = currentURL.indexOf('?') !== -1 ? '&' : '?';
+    			    var newURL = currentURL + separator + 'idquestion=' + this.getAttribute("data-idquestion");
+    			    window.history.pushState({ path: newURL }, '', newURL);
+    			});
+                 
+                 
+     			// Aggiungi evento mouseover per evidenziare l'elemento
+     			listItem.addEventListener('mouseover', function() {
+     				this.style.backgroundColor = "#f0f0f0"; // Cambia il colore di sfondo quando il mouse passa sopra
+     			});
 
-                glossaryList.appendChild(listItem);
+     			// Aggiungi evento mouseout per ripristinare il colore originale
+     			listItem.addEventListener('mouseout', function() {
+     				this.style.backgroundColor = ""; // Ripristina il colore originale quando il mouse esce dall'elemento
+     			});
+
+                questionsList.appendChild(listItem);
             }
         }
     }
 
 
-
-    // Funzione per filtrare il glossario in base alla ricerca
+    // Funzione per filtrare le domande in base alla ricerca
     function search() {
-        var header2 = document.getElementById("navList2");
-        var activeElement = header2.querySelector(".page-item.active");
-
-        if (activeElement) {
-            activeElement.classList.remove("active");
-        }
-
         var input, filter, ul, li, strong, i, txtValue;
         input = document.getElementById('searchInput');
         filter = input.value.toUpperCase();
-        ul = document.getElementById("glossaryList");
+        ul = document.getElementById("questionsList");
         li = ul.getElementsByTagName('li');
 
         for (i = 0; i < li.length; i++) {
@@ -111,36 +120,6 @@
         }
     }
 
-    // Funzione per filtrare il glossario in base alla lettera dell'alfabeto
-    function filterByLetter(letter) {
-        var ul, li, strong, i, txtValue;
-        ul = document.getElementById("glossaryList");
-        li = ul.getElementsByTagName('li');
-
-        for (i = 0; i < li.length; i++) {
-            strong = li[i].getElementsByTagName('strong')[0];
-            txtValue = strong.textContent || strong.innerText;
-            if (txtValue.charAt(0).toUpperCase() === letter) {
-                li[i].style.display = "";
-            } else {
-                li[i].style.display = "none";
-            }
-        }
-    }
-
-    // Chiamata alla funzione per popolare il glossario da un file XML
-    populateGlossaryFromXML("questions.xml");
-
-    // Aggiungi la classe "active" al pulsante corrente (evidenzialo)
-    var header2 = document.getElementById("navList2");
-    var btns2 = header2.getElementsByClassName("page-item");
-    for (var i = 0; i < btns2.length; i++) {
-        btns2[i].addEventListener("click", function () {
-            var current2 = header2.getElementsByClassName("active");
-            if (current2.length > 0) {
-                current2[0].classList.remove("active");
-            }
-            this.classList.add("active");
-        });
-    }
+    // Chiamata alla funzione per popolare le domande da un file XML
+    populateQuestionsFromXML("questions.xml");
 </script>

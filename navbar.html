@@ -1,12 +1,19 @@
 <script>
 
 function myFunction(page, event, letter) {
+	
+	console.log("Entro in myFunction");
 	   
 	updateActiveNavItem(page);
     event.preventDefault(); // Impedisce al link di eseguire l'azione predefinita
     var urlParams = new URLSearchParams(window.location.search);
     urlParams.set('page', page); // Imposta il parametro di query della pagina
 
+    if(urlParams.get('idquestion')){
+    	
+    	  urlParams.delete('idquestion');
+    }
+    
     // Aggiungi il parametro letter solo se è definito e la pagina è il glossario
     if (letter && page === 'glossario') {
         urlParams.set('letter', letter);
