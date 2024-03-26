@@ -63,10 +63,12 @@
       <answer>UI/UX Design, o User Interface/User Experience Design, è il processo di progettazione di prodotti digitali che sono intuitivi, facili da usare e offrono un'esperienza soddisfacente per l'utente, tenendo conto sia dell'interfaccia utente (UI) che dell'esperienza utente (UX).</answer>
       <sources>
       <source>
-      link1
+<name>Example</name>
+      <link>examplelink1.com</link>
       </source>
       <source>
-      link2
+<name>wikipedia</name>
+      <link>wikipedia.com</link>
       </source>
       </sources>
     </item>

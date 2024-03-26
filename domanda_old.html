@@ -1,3 +1,4 @@
+
     <div class="container">
         <div class="card">
             		<div class="tutto card-header d-flex justify-content-between align-items-center">
@@ -9,10 +10,9 @@
             <div class="card-body">
                 <h5 id="questionText" class="card-text"></h5>
                 <p id="answerText" class="card-text"></p>
-            <div id="sourcesSection" class="card-text d-flex justify-content-start">
-                <p class="text-muted mr-2">Fonti:</p>
-                <ul id="sourceList" class="list-unstyled d-flex justify-content-start"></ul>
-            </div>
+                 <div id="sourcesSection">
+        <a class="text-muted card-link">Fonti:</a>
+    </div>
             </div>
         </div>
     </div>
@@ -50,55 +50,48 @@ function funzioncina(){
         var entries = xmlDoc.getElementsByTagName("entry");
 
         for (var i = 0; i < entries.length; i++) {
+       	
             var qa = entries[i].getElementsByTagName("qa")[0];
             var questions = qa.getElementsByTagName("item");
 
             for (var j = 0; j < questions.length; j++) {
+            	            	
                 var currentQuestionId = questions[j].getElementsByTagName("question")[0].getAttribute("idquestion");
 
+                // Se l'ID della domanda corrente corrisponde a quello specificato nell'URL
                 if (currentQuestionId === questionId) {
                     var questionText = questions[j].getElementsByTagName("question")[0].textContent;
                     var answerText = questions[j].getElementsByTagName("answer")[0].textContent;
 
+                    // Aggiorna il contenuto HTML con la domanda e la risposta trovate
                     document.getElementById("questionText").innerText = questionText;
                     document.getElementById("answerText").innerText = answerText;
 
+                    // Aggiungi i link alle fonti se presenti
                     var sources = questions[j].getElementsByTagName("sources");
                     if (sources.length > 0) {
-
                         var sourceLinks = sources[0].getElementsByTagName("source");
-                        var sourcesList = document.getElementById("sourceList");
+                        var sourcesSection = document.getElementById("sourcesSection");
 
+                        // Aggiungi ogni link alle fonti
                         for (var k = 0; k < sourceLinks.length; k++) {
-                            var sourceName = sourceLinks[k].getElementsByTagName("name")[0].textContent;
-                            var sourceLink = sourceLinks[k].getElementsByTagName("link")[0].textContent;
-
-                            var listItem = document.createElement("li");
-                            var link = document.createElement("a");
-                            link.setAttribute("href", sourceLink);
-                            link.textContent = sourceName;
-                            link.classList.add("mr-2");
-                            link.classList.add("badge");
-                            link.classList.add("bg-primary-subtl");
-                            link.classList.add("border");
-                            link.classList.add("border-primary-subtle");
-                            link.classList.add("text-primary-emphasis");
-                            link.classList.add("rounded-pill");
-                            link.classList.add("badge");
-                            listItem.appendChild(link);
-                            sourcesList.appendChild(listItem);
+                            var sourceLink = document.createElement("a");
+                            sourceLink.setAttribute("href", sourceLinks[k].textContent.trim());
+                            sourceLink.classList.add("card-link");
+                            sourceLink.textContent = "Fonte " + (k + 1);
+                            sourcesSection.appendChild(sourceLink);
                         }
                     }
 
-                    return;
+                    return; // Esci dalla funzione dopo aver trovato la corrispondenza
                 }
             }
         }
 
+        // Se non viene trovata nessuna corrispondenza, visualizza un messaggio di errore
         document.getElementById("questionText").innerText = "Domanda non trovata";
-        document.getElementById("answerText").innerText = "La domanda specificata non è presente nel database.";
+        document.getElementById("answerText").innerText = "La domanda specificata non e' presente nel database.";
     }
-
 
     
     function indietro() {
