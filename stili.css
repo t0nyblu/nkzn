@@ -40,6 +40,15 @@
     height: auto; /* Al passaggio del mouse sopra l'elemento, l'altezza viene impostata su "auto" per consentire l'espansione */
 }
 
+#PAGECONTAINER {
+  position: relative;
+  min-height: 100vh;
+}
+
+#PAGINADAVISUALIZZARE {
+  padding-bottom: 2.5rem;    /* altezza del footer */
+}
+
 #FOOTER {
   position: absolute;
   bottom: 0;
