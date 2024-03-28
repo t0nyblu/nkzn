@@ -39,3 +39,10 @@
 .list-group-item:hover {
     height: auto; /* Al passaggio del mouse sopra l'elemento, l'altezza viene impostata su "auto" per consentire l'espansione */
 }
+
+#FOOTER {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;            /* altezza del footer */
+}

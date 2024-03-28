@@ -40,6 +40,14 @@
       <item>
         <question idquestion="7">Cos'è CSS?</question>
         <answer>CSS (Cascading Style Sheets) è un linguaggio di fogli di stile utilizzato per definire la presentazione di un documento scritto in HTML.</answer>
+      
+            <sources>
+      <source>
+<name>W3 Schools</name>
+      <link>examplelink1.com</link>
+      </source>
+      </sources>
+      
       </item>
       <item>
         <question idquestion="8">Come si utilizza CSS?</question>
@@ -63,12 +71,12 @@
       <answer>UI/UX Design, o User Interface/User Experience Design, è il processo di progettazione di prodotti digitali che sono intuitivi, facili da usare e offrono un'esperienza soddisfacente per l'utente, tenendo conto sia dell'interfaccia utente (UI) che dell'esperienza utente (UX).</answer>
       <sources>
       <source>
-<name>Example</name>
+<name>BIP Show</name>
       <link>examplelink1.com</link>
       </source>
       <source>
-<name>wikipedia</name>
-      <link>wikipedia.com</link>
+<name>Priorato</name>
+      <link>www.wikipedia.com</link>
       </source>
       </sources>
     </item>
